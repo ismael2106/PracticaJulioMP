@@ -183,7 +183,7 @@ Usuario(String nick, String contraseña) {
 
 
 
-    public void mostrarMenu() throws IOException, FileNotFoundException, ClassNotFoundException{
+    public void mostrarMenu() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
         //boolean contEquipo = false;
         boolean salida = false;
         while (salida == false){
