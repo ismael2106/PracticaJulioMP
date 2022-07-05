@@ -1,1 +1,3 @@
-emma --> 2
+emma --> cazador
+paula --> licantropo
+emma --> kiko

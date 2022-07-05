@@ -1,7 +1,10 @@
 package practicextraordinaria;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,7 +29,7 @@ public class Personaje extends Operation{
     private File ficheroOfertas= new File("FicherosMP/ficheroOfertas.txt");
     private String tipo;
     
-    
+    Scanner lectura = new Scanner(System.in);
     /*private Cazador cazador;
     private Licantropo licantropo;
     private Vampiro vampiro;
@@ -36,10 +39,25 @@ public class Personaje extends Operation{
         super(usuario);
         this.equipo = new Equipo(usuario);
         int edad = (int)(Math. random()*10+1);  //edad aleatoria solo para vampiro
-        this.nick = nick;
+        this.nick = usuario.getNick();
         this.oro = oro;
-        
+        int numEsbirros = (int)(Math. random()*2+1); //pone un numero aleatorio de esbirros
     }
+    
+    public void registrarPersonaje() throws IOException, InterruptedException {
+        getTipo();
+        System.out.print("Escriba el nombre que desea para su personaje: ");
+        setNombre(lectura.next());
+        
+        FileWriter fw = new FileWriter(getFicheroPersonajes(),true);        
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(nick + " --> " + nombre);
+        bw.newLine();
+        bw.close();
+        System.out.println("Personaje guardado");
+        System.out.println("-----------------------------------");
+    }
+    
     
     public File getFicheroPersonajes() {
         return ficheroPersonajes;
