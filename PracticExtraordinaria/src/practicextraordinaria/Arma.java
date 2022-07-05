@@ -17,38 +17,14 @@ public class Arma {
     
     private String nombre;
     private int manos;
-    ArrayList conjuntoArmas2 = new ArrayList();
+    private String categoria;
     
-    public Arma(String nombre, int manos) {
+    public Arma(String nombre, int manos, String categ) {
         this.nombre = nombre;
         this.manos = manos;
+        categoria = categ;
     }
     
-    
-    public void insertarArmas() throws FileNotFoundException{
-    
-    File fichero = new File("FicherosMP/ficheroArmas.txt");
-    Scanner sc = new Scanner(fichero);
-    int cont = 0;
-    
-    System.out.println("ARMAS DISPONIBLES:");
-    
-    while (sc.hasNextLine()){
-        String valor = sc.next();
-        conjuntoArmas2.add(valor);
-        cont++;
-    }
-    mostrarArmas();
-    System.out.println("");
-    }
-    
-    public void mostrarArmas(){
-        for (int i = 0; i < conjuntoArmas2.size(); i++){
-            System.out.println(i+"."+conjuntoArmas2.get(i));
-        }
-             
-    }
-
     public String getNombre() {
         return nombre;
     }

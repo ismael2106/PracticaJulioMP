@@ -25,7 +25,7 @@ private String nombre;
 private String contraseña;
 private String numReg;
 public File ficheroUsuario;
-public File ficheroOfertas;
+public String ficheroOfertas;
 private Usuario usuario;
 
 public Personaje personaje;
@@ -68,13 +68,12 @@ Usuario(String nick, String contraseña) {
         this.ficheroUsuario = ficheroUsuario;
     }
 
-    public File getFicheroOfertas() {
+    public String getFicheroOfertas() {
+        ficheroOfertas = "FicherosMP/ficheroOfertas.bin";
         return ficheroOfertas;
     }
 
-    public void setFicheroOfertas(File ficheroOfertas) {
-        this.ficheroOfertas = ficheroOfertas;
-    }
+    
     
     
 

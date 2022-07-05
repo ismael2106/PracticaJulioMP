@@ -31,7 +31,7 @@ Scanner lectura = new Scanner(System.in);
 
 
     
-    public void registrarse () throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void registrarse () throws FileNotFoundException, IOException, ClassNotFoundException, InterruptedException {
         
         System.out.println("1)Registrarse como usuario");
         System.out.println("2)Registrarse como operador");
@@ -83,7 +83,7 @@ Scanner lectura = new Scanner(System.in);
         
     }
     
-    public void login() throws FileNotFoundException, IOException, ClassNotFoundException{
+    public void login() throws FileNotFoundException, IOException, ClassNotFoundException, InterruptedException{
         System.out.println("1)Iniciar sesión como usuario");
         System.out.println("2)Iniciar sesión como operador");
         String opcion = lectura.next();
@@ -130,7 +130,7 @@ Scanner lectura = new Scanner(System.in);
 
     }
 
-    public void mostrarMenu() throws IOException, FileNotFoundException, ClassNotFoundException {
+    public void mostrarMenu() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
         
         System.out.println("1) REGISTRARSE");
         System.out.println("2) INICIAR SESION");

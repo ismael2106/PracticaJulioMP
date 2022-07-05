@@ -12,7 +12,7 @@ public class Start {
   
  
     
-    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, InterruptedException {
         app = new Aplicacion();
         app.mostrarMenu();
         

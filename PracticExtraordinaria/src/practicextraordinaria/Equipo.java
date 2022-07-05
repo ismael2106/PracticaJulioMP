@@ -23,12 +23,16 @@ class Equipo extends Operation {
     
     Armadura armadura = new Armadura();
     
-    ArrayList listaArmas = new ArrayList<Arma>();
+    ArrayList listaArmas = new ArrayList<Arma>(4);
     ArrayList listaArmaduras = new ArrayList<Armadura>();
     
     
+    
+    
     public Equipo(Usuario usuario) {
+        
         super(usuario);
+        
     }
 
     public void setListaArmas(ArrayList listaArmas) {
@@ -49,13 +53,40 @@ class Equipo extends Operation {
     
     public void verEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
         
-      Arma arma = new Arma(null, 0);
+      
+      listaArmas.get(1).
       arma.insertarArmas();
   
       Armadura armadura = new Armadura();
       armadura.insertarArmaduras();
       menuOferta();
     }
+    
+    public void insertarArmas() throws FileNotFoundException{
+    
+        File fichero = new File("FicherosMP/ficheroArmas.txt");
+        Scanner sc = new Scanner(fichero);
+        int cont = 0;
+
+
+        while (sc.hasNextLine()){
+            String nombre = sc.next();
+            int manos = sc.nextInt();
+            String categoria = sc.next();
+            Arma arma = new Arma(nombre,manos,categoria);
+            listaArmas.add(arma);
+            cont++;
+        }
+        mostrarArmas();
+        System.out.println("");
+    }
+    
+     public void mostrarArmas(){
+        for (int i = 0; i < listaArmas.size(); i++){
+            System.out.println(listaArmas.get(i).getNombre());
+             
+        }
+     }
     
     public void menuOferta() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
         System.out.println("1) Ofertar arma");
@@ -82,17 +113,12 @@ class Equipo extends Operation {
         
         FileWriter fw = new FileWriter(usuario.getFicheroOfertas()); //se procede a comprobar si existe el usuario
         BufferedWriter bw = new BufferedWriter(fw);
+        
+        int j = Integer.valueOf(i);
+        bw.write(usuario.getNick() + " --> " + getListaArmas().get(j));
+        bw.close();
+        System.out.println("Personaje guardado");
 
-FileWriter fw = new FileWriter(personaje.getFicheroPersonajes()); //se procede a comprobar si existe el usuario
-
-           /* fw.write(nick);
-            fw.write(" -->");
-            fw.write(nombre);*/
-
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(nick + " --> " + nombre);
-            bw.close();
-            System.out.println("Personaje guardado");
             
             
     }
@@ -103,7 +129,7 @@ FileWriter fw = new FileWriter(personaje.getFicheroPersonajes()); //se procede a
         
         FileWriter fw = new FileWriter(usuario.getFicheroOfertas()); //se procede a comprobar si existe el usuario
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(nick + " --> " + nombre);
+        //bw.write(nick + " --> " + nombre);
         bw.newLine();
         bw.close();        
     }
