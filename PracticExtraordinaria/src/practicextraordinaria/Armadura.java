@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package practicextraordinaria;
 
 import java.io.File;
@@ -14,32 +10,20 @@ import java.util.Scanner;
  * @author paula
  */
 public class Armadura {
-    ArrayList conjuntoArmaduras = new ArrayList();
+    public String nombre;
+    private String categoria;
+    private ArrayList<String> listaMateriales;
     
-public void insertarArmaduras() throws FileNotFoundException{
     
-    File fichero = new File("FicherosMP/ficheroArmaduras.txt");
-    Scanner sc = new Scanner(fichero);
-    int cont = 0;
-    
-    System.out.println("ARMADURAS DISPONIBLES:");
-    
-    while (sc.hasNextLine()){
-        String valor = sc.next();
-        conjuntoArmaduras.add(valor);
-        cont++;
-        
-    
+    public Armadura(String nombre, String categ, ArrayList<String> listaMateriales) {
+        this.nombre = nombre;
+        this.categoria = categ;
+        this.listaMateriales = listaMateriales;
     }
-    mostrarArmaduras(); 
-    System.out.println("");
+
+    public String getNombre() {
+        return nombre;
     }
     
-    public void mostrarArmaduras(){
-        for (int i = 0; i < conjuntoArmaduras.size(); i++){
-            System.out.println(i+"."+conjuntoArmaduras.get(i));
-        }
-             
-    }
   }
 

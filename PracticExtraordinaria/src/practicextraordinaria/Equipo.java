@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package practicextraordinaria;
 
 import java.io.BufferedWriter;
@@ -21,72 +16,64 @@ import java.util.Scanner;
 class Equipo extends Operation {
     Scanner lectura = new Scanner(System.in);
     
-    Armadura armadura = new Armadura();
-    
-    ArrayList listaArmas = new ArrayList<Arma>(4);
-    ArrayList listaArmaduras = new ArrayList<Armadura>();
+    ArrayList<Arma> listaArmas = new ArrayList<Arma>();
+    ArrayList<Armadura> listaArmaduras = new ArrayList<Armadura>();
     
     
     
-    
-    public Equipo(Usuario usuario) {
-        
+    public Equipo(Usuario usuario) throws FileNotFoundException {
         super(usuario);
-        
-    }
-
-    public void setListaArmas(ArrayList listaArmas) {
-        this.listaArmas = listaArmas;
-    }
-
-    public void setListaArmaduras(ArrayList listaArmaduras) {
-        this.listaArmaduras = listaArmaduras;
+        insertarArmasArmaduras();
     }
     
-     public ArrayList getListaArmas() {
-        return listaArmas;
-    }
-
-    public ArrayList getListaArmaduras() {
-        return listaArmaduras;
-    }
-    
-    public void verEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
-        
-      
-      listaArmas.get(1).
-      arma.insertarArmas();
-  
-      Armadura armadura = new Armadura();
-      armadura.insertarArmaduras();
-      menuOferta();
-    }
-    
-    public void insertarArmas() throws FileNotFoundException{
-    
-        File fichero = new File("FicherosMP/ficheroArmas.txt");
-        Scanner sc = new Scanner(fichero);
+    public void insertarArmasArmaduras() throws FileNotFoundException{
+        File ficheroArmas = new File("FicherosMP/ficheroArmas.txt");
+        Scanner sc = new Scanner(ficheroArmas);
         int cont = 0;
-
+        ArrayList<String> lista = new ArrayList();
 
         while (sc.hasNextLine()){
             String nombre = sc.next();
             int manos = sc.nextInt();
             String categoria = sc.next();
-            Arma arma = new Arma(nombre,manos,categoria);
+            while (sc.hasNext()){
+                String material = sc.next();
+                lista.add(material);
+            }
+            Arma arma = new Arma(nombre,manos,categoria, lista);
             listaArmas.add(arma);
             cont++;
         }
-        mostrarArmas();
-        System.out.println("");
+        
+        File ficheroArmaduras = new File("FicherosMP/ficheroArmaduras.txt");
+        Scanner sc2 = new Scanner(ficheroArmaduras);
+        int contador = 0;
+
+        while (sc2.hasNextLine()){
+            String nombre = sc2.next();
+            String categoria = sc2.next();
+            
+            sc2.useDelimiter("/n");
+            while (sc2.hasNext()){
+                String material = sc2.next();
+                lista.add(material);
+            }
+            Armadura armadura = new Armadura(nombre,categoria,lista);
+            listaArmaduras.add(armadura);
+            contador++;
+        }
     }
     
-     public void mostrarArmas(){
+    public void verEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
         for (int i = 0; i < listaArmas.size(); i++){
             System.out.println(listaArmas.get(i).getNombre());
-             
         }
-     }
+        for (int i = 0; i < listaArmaduras.size(); i++){
+            System.out.println(listaArmaduras.get(i).getNombre()); 
+        }
+    menuOferta();
+    }
+    
     
     public void menuOferta() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
         System.out.println("1) Ofertar arma");
@@ -115,12 +102,10 @@ class Equipo extends Operation {
         BufferedWriter bw = new BufferedWriter(fw);
         
         int j = Integer.valueOf(i);
-        bw.write(usuario.getNick() + " --> " + getListaArmas().get(j));
+        bw.write(usuario.getNick() + " --> " + listaArmas.get(j));
         bw.close();
         System.out.println("Personaje guardado");
 
-            
-            
     }
     
     public void ofertarArmadura() throws IOException{
@@ -133,115 +118,5 @@ class Equipo extends Operation {
         bw.newLine();
         bw.close();        
     }
-    
-    public void volver(){
-        
-    }
-  
- 
-  /*  public void inicializarEquipo(){
-        Scanner lectura = new Scanner(System.in);
-        int contador = 0;
-        for (int i = 0; i < 5; i++){
-            switch(i){
-                case 0:{
-                        Arma arma1 = new Arma();
-                        listaArmas.add(arma1);
-                        listaArmas.get(i).setNombre("arma1");
-                        listaArmas.get(i).setModAtaque(1);
-                        listaArmas.get(i).setModDefensa(1);
-                        listaArmas.get(i).setManos(1);
-                        listaArmas.get(i).setActivo(false);
-                        
-                        Armadura armadura1 = new Armadura();
-                        listaArmaduras.add(armadura1);
-                        listaArmaduras.get(i).setNombre("armadura1");
-                        listaArmaduras.get(i).setModAtaque(1);
-                        listaArmaduras.get(i).setModDefensa(1);
-                        listaArmaduras.get(i).setActivo(false);                       
-                        break;
-                }
-                        
-                case 1: {
-                        Arma arma2 = new Arma();
-                        listaArmas.add(arma2);
-                        listaArmas.get(i).setNombre("arma2");
-                        listaArmas.get(i).setModAtaque(1);
-                        listaArmas.get(i).setModDefensa(1);
-                        listaArmas.get(i).setManos(1);
-                        listaArmas.get(i).setActivo(false); 
-                        
-                        Armadura armadura2 = new Armadura();
-                        listaArmaduras.add(armadura2);
-                        listaArmaduras.get(i).setNombre("armadura2");
-                        listaArmaduras.get(i).setModAtaque(1);
-                        listaArmaduras.get(i).setModDefensa(1);
-                        listaArmaduras.get(i).setActivo(false);
-                        break;
-                }
-                case 2: {
-                        Arma arma3 = new Arma();
-                        listaArmas.add(arma3);
-                        listaArmas.get(i).setNombre("arma3");
-                        listaArmas.get(i).setModAtaque(1);
-                        listaArmas.get(i).setModDefensa(1);
-                        listaArmas.get(i).setManos(2);
-                        listaArmas.get(i).setActivo(false);
-                        
-                        
-                        Armadura armadura1 = new Armadura();
-                        listaArmaduras.add(armadura1);
-                        listaArmaduras.get(i).setNombre("armadura1");
-                        listaArmaduras.get(i).setModAtaque(1);
-                        listaArmaduras.get(i).setModDefensa(1);
-                        listaArmaduras.get(i).setActivo(false);                       
-                        break;
-                }
-                case 3:{
-                        Arma arma4 = new Arma();
-                        listaArmas.add(arma4);
-                        listaArmas.get(i).setNombre("arma4");
-                        listaArmas.get(i).setModAtaque(1);
-                        listaArmas.get(i).setModDefensa(1);
-                        listaArmas.get(i).setManos(2);
-                        listaArmas.get(i).setActivo(false);
-                        
-                        
-                        Armadura armadura4 = new Armadura();
-                        listaArmaduras.add(armadura4);
-                        listaArmaduras.get(i).setNombre("armadura4");
-                        listaArmaduras.get(i).setModAtaque(1);
-                        listaArmaduras.get(i).setModDefensa(1);
-                        listaArmaduras.get(i).setActivo(false);                      
-                        break;
-                    
-                }
-                case 4:{
-                        Arma arma5 = new Arma();
-                        listaArmas.add(arma5);
-                        listaArmas.get(i).setNombre("arma5");
-                        listaArmas.get(i).setModAtaque(1);
-                        listaArmas.get(i).setModDefensa(1);
-                        listaArmas.get(i).setManos(2);
-                        listaArmas.get(i).setActivo(false);
-                        
-                        
-                        Armadura armadura1 = new Armadura();
-                        listaArmaduras.add(armadura1);
-                        listaArmaduras.get(i).setNombre("armadura1");
-                        listaArmaduras.get(i).setModAtaque(1);
-                        listaArmaduras.get(i).setModDefensa(1);
-                        listaArmaduras.get(i).setActivo(false);                       
-                        break;
-                }
-            }
-            
-                  
-        }*/
-
-   
-    
-
-    
     
 }

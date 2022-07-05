@@ -15,32 +15,20 @@ import java.util.Scanner;
  */
 public class Arma {
     
-    private String nombre;
+    public String nombre;
     private int manos;
     private String categoria;
+    private ArrayList<String> listaMateriales;
     
-    public Arma(String nombre, int manos, String categ) {
+    public Arma(String nombre, int manos, String categ, ArrayList<String> listaMateriales) {
         this.nombre = nombre;
         this.manos = manos;
-        categoria = categ;
+        this.categoria = categ;
+        this.listaMateriales = listaMateriales;
     }
     
     public String getNombre() {
         return nombre;
     }
 
-    public int getManos() {
-        return manos;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setManos(int manos) {
-        this.manos = manos;
-    }
-    
-    
-    
 }

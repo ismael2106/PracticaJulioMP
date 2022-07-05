@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package practicextraordinaria;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,15 +12,11 @@ import java.util.Scanner;
  * @author emmar
  */
 
-
-   
-
-
 public class Personaje extends Operation{
     private String nick;
     private Usuario usuario;
     private String nombre;
-    private Equipo equipo = new Equipo(usuario);
+    private Equipo equipo;
     private ArrayList<Esbirro> esbirros;
     private float oro;
     private int salud;
@@ -40,8 +32,9 @@ public class Personaje extends Operation{
     private Vampiro vampiro;
     */
 
-    public Personaje(Usuario usuario){
+    public Personaje(Usuario usuario) throws FileNotFoundException{
         super(usuario);
+        this.equipo = new Equipo(usuario);
         int edad = (int)(Math. random()*10+1);  //edad aleatoria solo para vampiro
         this.nick = nick;
         this.oro = oro;

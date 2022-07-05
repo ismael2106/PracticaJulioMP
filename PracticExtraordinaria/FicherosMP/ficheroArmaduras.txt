@@ -1,5 +1,5 @@
-armadura_diamante
-armadura_hierro
-armadura_madera
-armadura_cristal
-armadura_bronce
+armadura_diamante normal hierro diamante
+armadura_hierro normal hierro diamante
+armadura_madera normal hierro diamante
+armadura_cristal normal hierro diamante
+armadura_bronce normal hierro diamante

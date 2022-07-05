@@ -1,4 +1,4 @@
-pistola
-metralleta
-fusil
-cañon
+pistola 2 normal hierro diamante /
+metralleta 2 normal /
+fusil 2 normal /
+cañon 1 normal /

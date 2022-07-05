@@ -15,14 +15,7 @@ public class Oferta {
     private String valor;
     private String lealtad;
     private String tipoUsuario;
-    private String precio;
-    
-    
-    public void añadirEquipo(String){
-        
-    }
-    
-    
+    private String precio;    
     
     
     
