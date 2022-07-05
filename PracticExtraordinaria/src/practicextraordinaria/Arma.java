@@ -13,6 +13,13 @@ public class Arma {
     private String nombre;
     private int manos;
 
+    public Arma(String nombre, int manos) {
+        this.nombre = nombre;
+        this.manos = manos;
+    }
+    
+    
+
     public String getNombre() {
         return nombre;
     }

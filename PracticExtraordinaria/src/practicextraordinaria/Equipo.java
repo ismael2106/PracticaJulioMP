@@ -5,6 +5,9 @@
  */
 package practicextraordinaria;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,16 +15,19 @@ import java.util.Scanner;
  *
  * @author emmar
  */
-class Equipo {
+class Equipo extends Operation {
+    Scanner lectura = new Scanner(System.in);
+    
+    Armadura armadura = new Armadura();
     
     ArrayList listaArmas = new ArrayList<Arma>();
     ArrayList listaArmaduras = new ArrayList<Armadura>();
     
     
-
-    public Equipo() {
-        //inicializarEquipo();
-  
+    public Equipo(Usuario usuario) {
+        super(usuario);
+        Arma arma = new Arma("pistola", 2);
+        listaArmas.add(arma);
     }
 
     public void setListaArmas(ArrayList listaArmas) {
@@ -40,12 +46,69 @@ class Equipo {
         return listaArmaduras;
     }
     
+    public void verEquipo() throws IOException {
+        
+        Arma arma = new Arma("pistola", 2);
+        listaArmas.add(arma);
+        
+        for (int i = 0; i < listaArmas.size(); i++){
+            System.out.println(i, listaArmas.get(i).getNombre());
+        }
+        
+        for (int i = 0; i < listaArmaduras.size(); i++){
+            System.out.println(i, listaArmaduras.get(i).getNombre());
+            
+        }
+        System.out.println(i, listaArmas.get(i).getNombre());
+    menuOferta();
+    }
     
+    public void menuOferta() throws IOException{
+        System.out.println("1) Ofertar arma");
+        System.out.println("2) Ofertar armadura");
+        System.out.println("3) Volver");
+        
+        String c = lectura.next();
+
+        if ("1".equals(c)){
+            ofertarArma();
+        }
+        else if ("2".equals(c)){
+            ofertarArmadura();
+        }
+        else if ("3".equals(c)){
+            volver();   
+        }   
+   
+    }
     
+    public void ofertarArma() throws IOException{
+        System.out.println("¿Que arma desea ofertar?");
+        String i = lectura.next();
+        
+        FileWriter fw = new FileWriter(usuario.getFicheroOfertas()); //se procede a comprobar si existe el usuario
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(usuario.getNick() + " --> " + usuario.getNombre());
+        bw.newLine();
+        bw.close();
+    }
     
+    public void ofertarArmadura(){
+        System.out.println("¿Que armadura desea ofertar?");
+        String i = lectura.next();
+        
+        FileWriter fw = new FileWriter(usuario.getFicheroOfertas()); //se procede a comprobar si existe el usuario
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(nick + " --> " + nombre);
+        bw.newLine();
+        bw.close();        
+    }
     
-    
-    
+    public void volver(){
+        
+    }
+  
+ 
   /*  public void inicializarEquipo(){
         Scanner lectura = new Scanner(System.in);
         int contador = 0;

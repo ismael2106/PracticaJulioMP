@@ -15,30 +15,39 @@ import java.util.Scanner;
  *
  * @author emmar
  */
-public class Personaje implements Serializable{
+
+
+   
+
+
+public class Personaje extends Operation{
     private String nick;
+    private Usuario usuario;
     private String nombre;
-    private Equipo equipo = new Equipo();
+    private Equipo equipo = new Equipo(usuario);
     private ArrayList<Esbirro> esbirros;
     private float oro;
     private int salud;
     private int edad;
     private Modificador modificador = new Modificador();
     private File ficheroPersonajes= new File("FicherosMP/ficheroPersonajes.txt");
-        
+    private File ficheroOfertas= new File("FicherosMP/ficheroOfertas.txt");
     private String tipo;
+    
     
     /*private Cazador cazador;
     private Licantropo licantropo;
     private Vampiro vampiro;
     */
-    
-    Personaje(){
+
+    public Personaje(Usuario usuario){
+        super(usuario);
         int edad = (int)(Math. random()*10+1);  //edad aleatoria solo para vampiro
         this.nick = nick;
         this.oro = oro;
+        
     }
-
+    
     public File getFicheroPersonajes() {
         return ficheroPersonajes;
     }
@@ -83,9 +92,7 @@ public class Personaje implements Serializable{
     public Equipo getEquipo() {
         return equipo;
     }
-    
-    
-    
+
     
     public String getNombre() {
         return nombre;
@@ -94,6 +101,13 @@ public class Personaje implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+     public void setEquipo() {
+        System.out.println("he llegado");
+        //equipo.inicializarEquipo();
+        //equipo.equipar();
+     }
+     
     
     /*
     public void inicializarEsbirros(int j){
@@ -153,15 +167,7 @@ public class Personaje implements Serializable{
     public String getNick() {
         return nick;
     }
-    
-    public void setEquipo() {
-        System.out.println("he llegado");
-        equipo.inicializarEquipo();
-        equipo.equipar();
-    }
-
-    
-
+   
     public ArrayList<Esbirro> getEsbirros() {
         return esbirros;
     }
@@ -194,10 +200,6 @@ public class Personaje implements Serializable{
         this.poder = poder;
     }
 
-
-
-    
-
     public Cazador getCazador() {
         return cazador;
     }
@@ -214,12 +216,12 @@ public class Personaje implements Serializable{
         return modificador;
     }*/
 
-    void setEquipo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
     float getOro() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    
 
 }
