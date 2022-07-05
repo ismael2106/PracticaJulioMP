@@ -115,8 +115,10 @@ Scanner lectura = new Scanner(System.in);
         }
         if (encontrado == false){
         System.out.println("Usuario no encontrado");
+        System.out.println("-----------------------------------");
+        login();
         }
-
+        System.out.println("-----------------------------------");
         if (encontrado == true){
             if ("1".equals(opcion)){
             usuario = new Usuario(nick,contraseña);

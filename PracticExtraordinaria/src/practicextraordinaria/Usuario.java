@@ -71,10 +71,7 @@ Usuario(String nick, String contraseña) {
     public String getFicheroOfertas() {
         ficheroOfertas = "FicherosMP/ficheroOfertas.bin";
         return ficheroOfertas;
-    }
-
-    
-    
+    }   
     
 
     public String getNick() {
@@ -97,8 +94,7 @@ Usuario(String nick, String contraseña) {
         return ficheroUsuario;
     }
 
-
-
+    
     /*public void deserializarUsuario() throws FileNotFoundException, IOException, ClassNotFoundException{
         try{
         FileInputStream archivo = new FileInputStream("./personajes.bin");
@@ -150,7 +146,7 @@ Usuario(String nick, String contraseña) {
             bw.write(nick + " --> " + nombre);
             bw.close();
             System.out.println("Personaje guardado");
-
+            System.out.println("-----------------------------------");
     }
 
 

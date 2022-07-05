@@ -33,11 +33,13 @@ class Equipo extends Operation {
         ArrayList<String> lista = new ArrayList();
 
         while (sc.hasNextLine()){
-            String nombre = sc.next();
-            int manos = sc.nextInt();
-            String categoria = sc.next();
-            while (sc.hasNext()){
-                String material = sc.next();
+            String line = sc.nextLine();
+            Scanner sc3 = new Scanner(line);
+            String nombre = sc3.next();
+            int manos = sc3.nextInt();
+            String categoria = sc3.next();
+            while (sc3.hasNext()){
+                String material = sc3.next();
                 lista.add(material);
             }
             Arma arma = new Arma(nombre,manos,categoria, lista);
@@ -50,12 +52,13 @@ class Equipo extends Operation {
         int contador = 0;
 
         while (sc2.hasNextLine()){
-            String nombre = sc2.next();
-            String categoria = sc2.next();
+            String line = sc2.nextLine();
+            Scanner sc3 = new Scanner(line);
+            String nombre = sc3.next();
+            String categoria = sc3.next();
             
-            sc2.useDelimiter("/n");
-            while (sc2.hasNext()){
-                String material = sc2.next();
+            while (sc3.hasNext()){
+                String material = sc3.next();
                 lista.add(material);
             }
             Armadura armadura = new Armadura(nombre,categoria,lista);
@@ -65,12 +68,18 @@ class Equipo extends Operation {
     }
     
     public void verEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
+        System.out.println("-------------------------------------");
+        System.out.println("ARMAS DISPONIBLES:");
         for (int i = 0; i < listaArmas.size(); i++){
-            System.out.println(listaArmas.get(i).getNombre());
+            System.out.println(i+1 + "." + listaArmas.get(i).getNombre());
         }
+        System.out.println("");
+        
+        System.out.println("ARMADURAS DISPONIBLES:");
         for (int i = 0; i < listaArmaduras.size(); i++){
-            System.out.println(listaArmaduras.get(i).getNombre()); 
+            System.out.println(i+1 + "." + listaArmaduras.get(i).getNombre()); 
         }
+        System.out.println("-------------------------------------");
     menuOferta();
     }
     
@@ -104,7 +113,6 @@ class Equipo extends Operation {
         int j = Integer.valueOf(i);
         bw.write(usuario.getNick() + " --> " + listaArmas.get(j));
         bw.close();
-        System.out.println("Personaje guardado");
 
     }
     
