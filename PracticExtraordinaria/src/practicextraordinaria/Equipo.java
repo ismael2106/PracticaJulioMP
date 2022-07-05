@@ -6,8 +6,11 @@
 package practicextraordinaria;
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,8 +29,6 @@ class Equipo extends Operation {
     
     public Equipo(Usuario usuario) {
         super(usuario);
-        Arma arma = new Arma("pistola", 2);
-        listaArmas.add(arma);
     }
 
     public void setListaArmas(ArrayList listaArmas) {
@@ -46,24 +47,17 @@ class Equipo extends Operation {
         return listaArmaduras;
     }
     
-    public void verEquipo() throws IOException {
+    public void verEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
         
-        Arma arma = new Arma("pistola", 2);
-        listaArmas.add(arma);
-        
-        for (int i = 0; i < listaArmas.size(); i++){
-            System.out.println(i, listaArmas.get(i).getNombre());
-        }
-        
-        for (int i = 0; i < listaArmaduras.size(); i++){
-            System.out.println(i, listaArmaduras.get(i).getNombre());
-            
-        }
-        System.out.println(i, listaArmas.get(i).getNombre());
-    menuOferta();
+      Arma arma = new Arma(null, 0);
+      arma.insertarArmas();
+  
+      Armadura armadura = new Armadura();
+      armadura.insertarArmaduras();
+      menuOferta();
     }
     
-    public void menuOferta() throws IOException{
+    public void menuOferta() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
         System.out.println("1) Ofertar arma");
         System.out.println("2) Ofertar armadura");
         System.out.println("3) Volver");
@@ -77,7 +71,7 @@ class Equipo extends Operation {
             ofertarArmadura();
         }
         else if ("3".equals(c)){
-            volver();   
+            usuario.mostrarMenu();
         }   
    
     }
@@ -88,12 +82,22 @@ class Equipo extends Operation {
         
         FileWriter fw = new FileWriter(usuario.getFicheroOfertas()); //se procede a comprobar si existe el usuario
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(usuario.getNick() + " --> " + usuario.getNombre());
-        bw.newLine();
-        bw.close();
+
+FileWriter fw = new FileWriter(personaje.getFicheroPersonajes()); //se procede a comprobar si existe el usuario
+
+           /* fw.write(nick);
+            fw.write(" -->");
+            fw.write(nombre);*/
+
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(nick + " --> " + nombre);
+            bw.close();
+            System.out.println("Personaje guardado");
+            
+            
     }
     
-    public void ofertarArmadura(){
+    public void ofertarArmadura() throws IOException{
         System.out.println("¿Que armadura desea ofertar?");
         String i = lectura.next();
         

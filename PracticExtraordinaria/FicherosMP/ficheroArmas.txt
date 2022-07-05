@@ -1,0 +1,4 @@
+pistola
+metralleta
+fusil
+cañon

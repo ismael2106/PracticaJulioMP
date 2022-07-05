@@ -1,0 +1,5 @@
+armadura_diamante
+armadura_hierro
+armadura_madera
+armadura_cristal
+armadura_bronce
