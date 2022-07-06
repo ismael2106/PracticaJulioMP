@@ -9,12 +9,10 @@ package practicextraordinaria;
  *
  * @author emmar
  */
-public abstract class Operation {
-    public Usuario usuario;
-    public Operador operador;
+public class Ghoul {
+    int dependencia;
     
-
-    public Operation(Usuario usuario) {
-       this.usuario = usuario;
+    public Ghoul(String dependencia){
+        this.dependencia = Integer.parseInt(dependencia);
     }
 }

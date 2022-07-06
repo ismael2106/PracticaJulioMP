@@ -145,6 +145,7 @@ Scanner lectura = new Scanner(System.in);
         if (encontrado == true){
             if ("1".equals(opcion)){
             usuario = new Usuario(nick,contraseña);
+                System.out.println("hola");
             usuario.mostrarMenu();
             }
             

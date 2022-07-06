@@ -1,0 +1,4 @@
+esb1 humano alta
+esb2 gohul 4
+esb3 demonio pactoo
+esb4 demonio pactoo2

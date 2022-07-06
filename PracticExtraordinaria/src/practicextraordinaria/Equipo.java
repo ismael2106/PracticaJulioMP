@@ -18,12 +18,14 @@ class Equipo extends Operation {
     
     ArrayList<Arma> listaArmas = new ArrayList<Arma>();
     ArrayList<Armadura> listaArmaduras = new ArrayList<Armadura>();
+    ArrayList<Esbirro> listaEsbirros = new ArrayList<Esbirro>();
     
     
     
     public Equipo(Usuario usuario) throws FileNotFoundException {
         super(usuario);
         insertarArmasArmaduras();
+        insertarEsbirros();
     }
     
     public void insertarArmasArmaduras() throws FileNotFoundException{
@@ -67,7 +69,25 @@ class Equipo extends Operation {
         }
     }
     
-    public void verEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
+    public void insertarEsbirros() throws FileNotFoundException{
+        File ficheroEsbirros = new File("FicherosMP/ficheroEsbirros.txt");
+        Scanner sc = new Scanner(ficheroEsbirros);
+        int cont = 0;
+        ArrayList<String> lista = new ArrayList();
+
+        while (sc.hasNextLine()){
+            String line = sc.nextLine();
+            Scanner sc3 = new Scanner(line);
+            String nombre = sc3.next();
+            String tipo = sc3.next();
+            String cosa = sc3.next();
+            Esbirro esbirro = new Esbirro(nombre, tipo, cosa);
+            listaEsbirros.add(esbirro);
+            cont++;
+        }
+    }
+    
+    public void consultarEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
         System.out.println("-------------------------------------");
         System.out.println("ARMAS DISPONIBLES:");
         for (int i = 0; i < listaArmas.size(); i++){
@@ -80,22 +100,29 @@ class Equipo extends Operation {
             System.out.println(i+1 + "." + listaArmaduras.get(i).getNombre()); 
         }
         System.out.println("-------------------------------------");
-    menuOferta();
     }
     
-    
-    public void menuOferta() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
-        System.out.println("1) Ofertar arma");
-        System.out.println("2) Ofertar armadura");
+    public void consultarEsbirros() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
+        System.out.println("ESBIRROS DISPONIBLES:");
+        for (int i = 0; i < listaEsbirros.size(); i++){
+            System.out.println(i+1 + "." + listaEsbirros.get(i).getNombre()); 
+        }
+        System.out.println("-------------------------------------");
+        
+    }
+    public void menuEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
+        System.out.println("1) Añadir equipo");
+        System.out.println("2) Borrar equipo");
+        
         System.out.println("3) Volver");
         
         String c = lectura.next();
 
         if ("1".equals(c)){
-            ofertarArma();
+            añadirEquipo();
         }
         else if ("2".equals(c)){
-            ofertarArmadura();
+            borrarEquipo();
         }
         else if ("3".equals(c)){
             usuario.mostrarMenu();
@@ -103,28 +130,147 @@ class Equipo extends Operation {
    
     }
     
-    public void ofertarArma() throws IOException{
+    public void menuEsbirros () throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
+        System.out.println("1) Añadir esbirro");
+        System.out.println("2) Borrar esbirro");
+        
+        System.out.println("5) Volver");
+        
+        String c = lectura.next();
+        
+        if ("1".equals(c)){
+            añadirEsbirro();
+        }
+        else if ("2".equals(c)){
+            borrarEsbirro();
+        }
+        else if ("3".equals(c)){
+            usuario.mostrarMenu();
+        }   
+    }
+    
+    public void ofertarArma(Oferta oferta) throws IOException{
         System.out.println("¿Que arma desea ofertar?");
-        String i = lectura.next();
+        int i = lectura.nextInt();
         
-        FileWriter fw = new FileWriter(usuario.getFicheroOfertas()); //se procede a comprobar si existe el usuario
+        listaArmas.get(i);
+        
+        oferta.crearOfertaArma(listaArmas.get(i));
+        
+        
+        
+        usuario.getListaOfertas().add(oferta); 
+        
         BufferedWriter bw = new BufferedWriter(fw);
-        
-        int j = Integer.valueOf(i);
-        bw.write(usuario.getNick() + " --> " + listaArmas.get(j));
         bw.close();
-
     }
     
-    public void ofertarArmadura() throws IOException{
+    public void ofertarArmadura(Oferta oferta) throws IOException{
         System.out.println("¿Que armadura desea ofertar?");
-        String i = lectura.next();
+        int i = lectura.nextInt();
         
-        FileWriter fw = new FileWriter(usuario.getFicheroOfertas()); //se procede a comprobar si existe el usuario
+        listaArmaduras.get(i);
+        
+        oferta.crearOfertaArma(listaArmas.get(i));
+        usuario.getListaOfertas().add(listaArmaduras.get(i)); //se procede a comprobar si existe el usuario
         BufferedWriter bw = new BufferedWriter(fw);
-        //bw.write(nick + " --> " + nombre);
-        bw.newLine();
-        bw.close();        
+        bw.close();      
     }
     
+    public void añadirEquipo(){
+        System.out.println("¿Qué quieres añadir?");
+        System.out.println("1) Arma");
+        System.out.println("2) Armadura");
+        
+        String opcion = lectura.next();
+        
+        if ("1".equals(opcion)){
+            System.out.println("Escribe el nombre del arma");
+            String nombre = lectura.next();
+            System.out.println("Escribe el número de manos del arma");
+            int manos = lectura.nextInt();
+            System.out.println("Escribe la categoría del arma");
+            String categoria = lectura.next();
+            System.out.println("Escribe los materiales del arma");
+            String materiales = lectura.nextLine();
+            Scanner sc = new Scanner(materiales);
+            ArrayList<String> listaMateriales = new ArrayList();
+            while (sc.hasNext()){
+                String material = sc.next();
+                listaMateriales.add(material);
+            }
+            
+            Arma new_arma = new Arma(nombre, manos, categoria, listaMateriales);
+            listaArmas.add(new_arma);
+        }
+        if ("2".equals(opcion)){
+            System.out.println("Escribe el nombre de la armadura");
+            String nombre = lectura.next();
+            System.out.println("Escribe la categoría de la armadura");
+            String categoria = lectura.next();
+            System.out.println("Escribe los materiales la armadura");
+            String materiales = lectura.nextLine();
+            Scanner sc = new Scanner(materiales);
+            ArrayList<String> listaMateriales = new ArrayList();
+            while (sc.hasNext()){
+                String material = sc.next();
+                listaMateriales.add(material);
+            }
+            
+            Armadura new_armadura = new Armadura(nombre, categoria, listaMateriales);
+            listaArmaduras.add(new_armadura);
+        }
+    }
+    
+    public void borrarEquipo(){
+        System.out.println("¿Qué quieres borrar?");
+        System.out.println("1) Arma");
+        System.out.println("2) Armadura");
+        
+        String opcion = lectura.next();
+        
+        if ("1".equals(opcion)){
+            System.out.println("Escribe el número del arma que desea eliminar");
+            int num = lectura.nextInt();
+            listaArmas.remove(num-1);
+        }
+        if ("2".equals(opcion)){
+            System.out.println("Escribe el número de la armadura que desea eliminar");
+            int num = lectura.nextInt();
+            listaArmaduras.remove(num-1);
+        }
+    }
+    
+    public void añadirEsbirro(){
+        System.out.println("Escribe el nombre del nuevo esbirro");
+        String nombre = lectura.next();
+        System.out.println("Escribe el tipo del esbirro");
+        String tipo = lectura.next();
+        
+        if("humano".equals(tipo)){
+            System.out.println("Escribe la lealtad del humano (alta, media, baja)");
+            String lealtad = lectura.next();
+            Esbirro esbirro = new Esbirro(nombre, tipo, lealtad);
+            listaEsbirros.add(esbirro);
+        }
+        else if("ghoul".equals(tipo)){
+            System.out.println("Escribe la dependencia del ghoul (1-5)");
+            String dependencia = lectura.next();
+            Esbirro esbirro = new Esbirro(nombre, tipo, dependencia);
+            listaEsbirros.add(esbirro);
+        }
+        else if("demonio".equals(tipo)){
+            System.out.println("Escribe el pacto entre el demonio y su amo");
+            String pacto = lectura.next();
+            Esbirro esbirro = new Esbirro(nombre, tipo, pacto);
+            listaEsbirros.add(esbirro);
+        }
+    }
+    
+    public void borrarEsbirro(){
+        System.out.println("¿Qué esbirro desea borrar?");        
+        int opcion = lectura.nextInt();
+        
+        listaEsbirros.remove(opcion-1);
+    }
 }

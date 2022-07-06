@@ -5,16 +5,18 @@
  */
 package practicextraordinaria;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author emmar
  */
-public abstract class Operation {
-    public Usuario usuario;
-    public Operador operador;
+public class Demonio {
+    String pacto;
+    ArrayList <Esbirro> esbirros_demonio = new ArrayList<>();
     
-
-    public Operation(Usuario usuario) {
-       this.usuario = usuario;
+    public Demonio (String pacto){
+        this.pacto = pacto;
     }
+    
 }

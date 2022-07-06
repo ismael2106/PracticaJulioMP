@@ -30,17 +30,15 @@ public class Personaje extends Operation{
     private String tipo;
     
     Scanner lectura = new Scanner(System.in);
-    /*private Cazador cazador;
-    private Licantropo licantropo;
-    private Vampiro vampiro;
-    */
+    
+    
 
     public Personaje(Usuario usuario) throws FileNotFoundException{
         super(usuario);
         this.equipo = new Equipo(usuario);
         int edad = (int)(Math. random()*10+1);  //edad aleatoria solo para vampiro
         this.nick = usuario.getNick();
-        this.oro = oro;
+        this.oro = (float)(Math. random()*10+1);
         int numEsbirros = (int)(Math. random()*2+1); //pone un numero aleatorio de esbirros
     }
     
@@ -57,6 +55,49 @@ public class Personaje extends Operation{
         System.out.println("Personaje guardado");
         System.out.println("-----------------------------------");
     }
+    
+    public void consultarOro(){
+        System.out.println("Tu oro actual es: "+getOro());
+        System.out.println("---------------------------");
+        System.out.println("1)Añadir oro");
+        System.out.println("2)Reducir oro");
+        System.out.println("3)Volver");
+        String op = lectura.next();
+        if ("1".equals(op)){
+            System.out.println("Inserte la cantidad de oro que desea añadir");
+            float oro = lectura.nextFloat();
+            setOro(getOro()+oro);
+            if (getOro()<0){
+                System.out.println("No puede restar esa cantidad");
+            }
+            else{
+                System.out.println("Tu oro actual pasa a ser: "+getOro());
+            }
+        System.out.println("---------------------------");
+        }
+        if ("2".equals(op)){
+            System.out.println("Inserte la cantidad de oro que desea reducir");
+            float oro = lectura.nextFloat();
+            float resta = getOro()-oro;
+            if (resta<0){
+                System.out.println("No puede restar esa cantidad");
+            }
+            else{
+                System.out.println("Tu oro actual pasa a ser: "+getOro());
+            }
+        System.out.println("---------------------------");
+        }
+    }
+
+    public float getOro() {
+        return oro;
+    }
+    
+    public void setOro(float oro) {
+        this.oro = oro;
+    }
+    
+    
     
     
     public File getFicheroPersonajes() {
@@ -118,121 +159,5 @@ public class Personaje extends Operation{
         //equipo.inicializarEquipo();
         //equipo.equipar();
      }
-     
-    
-    /*
-    public void inicializarEsbirros(int j){
-        ArrayList<Esbirro> listaEsbirros = new ArrayList<Esbirro>();
-        for (int i=0 ; i < j; i++){
-            switch(i){
-                case 0:{
-                        Esbirro esbirro1 = new Esbirro();
-                        listaEsbirros.add(esbirro1);
-                        listaEsbirros.get(i).setNombre("esbirro1");
-                        listaEsbirros.get(i).setSalud((int) (Math. random()*3+1));
-                   
-                        break;
-                }
-                        
-                case 1: {
-                       Esbirro esbirro2 = new Esbirro();
-                        listaEsbirros.add(esbirro2);
-                        listaEsbirros.get(i).setNombre("esbirro2");
-                        listaEsbirros.get(i).setSalud((int) (Math. random()*3+1));
-                   
-                        break;
-                }
-                case 2: {
-                        Esbirro esbirro3 = new Esbirro();
-                        listaEsbirros.add(esbirro3);
-                        listaEsbirros.get(i).setNombre("esbirro3");
-                        listaEsbirros.get(i).setSalud((int) (Math. random()*3+1));
-                   
-                        break;
-                }
-                case 3:{
-                        Esbirro esbirro4 = new Esbirro();
-                        listaEsbirros.add(esbirro4);
-                        listaEsbirros.get(i).setNombre("esbirro4");
-                        listaEsbirros.get(i).setSalud((int) (Math. random()*3+1));
-                   
-                        break;
-                    
-                }
-                case 4:{
-                        Esbirro esbirro5 = new Esbirro();
-                        listaEsbirros.add(esbirro5);
-                        listaEsbirros.get(i).setNombre("esbirro5");
-                        listaEsbirros.get(i).setSalud((int) (Math. random()*3+1));
-                   
-                        break;
-                }
-            }
-            
-                  
-        }
-        
-    }
-   
-
-    public String getNick() {
-        return nick;
-    }
-   
-    public ArrayList<Esbirro> getEsbirros() {
-        return esbirros;
-    }
-
-    public void setEsbirros(ArrayList<Esbirro> esbirros) {
-        this.esbirros = esbirros;
-    }
-
-    public float getOro() {
-        return oro;
-    }
-
-    public void setOro(float oro) {
-        this.oro = oro;
-    }
-
-    public int getSalud() {
-        return salud;
-    }
-
-    public void setSalud(int salud) {
-        this.salud = salud;
-    }
-
-    public int getPoder() {
-        return poder;
-    }
-
-    public void setPoder(int poder) {
-        this.poder = poder;
-    }
-
-    public Cazador getCazador() {
-        return cazador;
-    }
-
-    public Licantropo getLicantropo() {
-        return licantropo;
-    }
-
-    public Vampiro getVampiro() {
-        return vampiro;
-    }
-
-    public Modificador getModificador() {
-        return modificador;
-    }*/
-
-    
-
-    float getOro() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    
 
 }
