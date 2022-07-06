@@ -30,16 +30,16 @@ public class Operador {
             String c = lectura.next();
 
             if ("1".equals(c)){
-                validarOferta();
+                //validarOferta();
             }
             if ("2".equals(c)){
-                banear();
+                //banear();
             }
             if ("3".equals(c)){
-                consultarVentas();
+                //consultarVentas();
             }
             if ("4".equals(c)){
-                desbanear();
+                //desbanear();
             }
             if ("5".equals(c)){
                 salida = true;

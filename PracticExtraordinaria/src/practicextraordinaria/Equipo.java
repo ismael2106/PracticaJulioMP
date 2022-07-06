@@ -158,7 +158,8 @@ class Equipo extends Operation {
         int i = lectura.nextInt();
         
         oferta.crearOfertaArma(listaArmas.get(i));
-        usuario.getListaOfertas().add(oferta); 
+        //usuario.getListaOfertas().add(oferta); 
+        //creo que aqui no se añade la oferta, se añade al finalizar la oferta
     }
     
     public void ofertarArmadura(Oferta oferta) throws IOException{
@@ -166,7 +167,8 @@ class Equipo extends Operation {
         int i = lectura.nextInt();
         
         oferta.crearOfertaArmadura(listaArmaduras.get(i-1));
-        usuario.getListaOfertas().add(oferta);
+        //usuario.getListaOfertas().add(oferta);
+        //creo que aqui no se añade la oferta, se añade al finalizar la oferta
     }
     
     public void ofertarEsbirro(Oferta oferta) throws IOException{
@@ -174,7 +176,8 @@ class Equipo extends Operation {
         int i = lectura.nextInt();
         
         oferta.crearOfertaEsbirro(listaEsbirros.get(i));
-        usuario.getListaOfertas().add(oferta); 
+        //usuario.getListaOfertas().add(oferta); 
+        //creo que aqui no se añade la oferta, se añade al finalizar la oferta
     }
     
     public void añadirEquipo(){

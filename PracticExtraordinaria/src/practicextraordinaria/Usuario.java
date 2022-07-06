@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 *
 * @author paula
 */
-public class Usuario {
+public class Usuario implements Serializable{
 
 Scanner lectura = new Scanner(System.in);
 
@@ -106,20 +106,23 @@ public Personaje personaje;
                         personaje.getEquipo().ofertarArmadura(oferta);
                     }
                     }
-                if ("2".equals(opt)){
+                else if ("2".equals(opt)){
                     personaje.getEquipo().consultarEsbirros();                    
                     personaje.getEquipo().ofertarEsbirro(oferta);                    
                 }
-                if ("3".equals(opt)){  
-                    if (cont>1){
+                else if ("3".equals(opt)){  
+                    if (cont>=1){
+                    /*
                     System.out.println("Quiere ofertar:");
                     cont=listaOfertas.size()-cont;
                     for (int i = cont; i < listaOfertas.size(); i++){
                         System.out.println(listaOfertas.get(i).getNombre());
                     }
+                    */
                     System.out.println("¿Es correcto?");
                     System.out.println("1)Sí");
                     System.out.println("2)Cancelar oferta");
+                    
                     String e = lectura.next();
                     if ("1".equals(e)){
                         System.out.println("Inserte el precio de su oferta");
@@ -128,6 +131,8 @@ public Personaje personaje;
                         oferta.setTipoUsuario(nick);
 
                         listaOfertas.add(oferta);
+                        ListaDeOfertas listaOf = new ListaDeOfertas(listaOfertas);
+                        serializarOfertas("FicherosMP/ficheroOfertas.bin",listaOf);
 
                         System.out.println("Oferta publicada con éxito");
                         System.out.println("--------------------------");
@@ -159,7 +164,19 @@ public Personaje personaje;
     public void deserializar(File fichero) throws FileNotFoundException, IOException, ClassNotFoundException{
             FileInputStream fileStream = new FileInputStream(ficheroOfertas);
             ObjectInputStream objectStream = new ObjectInputStream(fileStream);
-            this.listaOfertas = (ArrayList<Oferta>) objectStream.readObject();      
+            
+            ListaDeOfertas lista = (ListaDeOfertas) objectStream.readObject();
+            listaOfertas = lista.getListaOfertas();
+            
+            //this.listaOfertas = (ArrayList<Oferta>) objectStream.readObject();      
+    }
+    
+    public void serializarOfertas(String file,ListaDeOfertas lista) throws FileNotFoundException, IOException{
+        File fich = new File(file);
+        FileOutputStream f = new FileOutputStream(fich);
+        ObjectOutputStream obj = new ObjectOutputStream(f);
+        obj.writeObject(lista);
+        
     }
 
     public ArrayList<Oferta> getListaOfertas() {
