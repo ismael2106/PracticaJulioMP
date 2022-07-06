@@ -1,4 +1,4 @@
-pistola 2 epico hierro diamante
-metralleta 2 raro
-fusil 2 raro
-cañon 1 legendario
+pistola 2 epico 3 4 hierro diamante
+metralleta 2 raro 3 3
+fusil 2 raro 3 5
+cañon 1 legendario 3 2

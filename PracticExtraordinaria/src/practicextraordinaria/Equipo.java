@@ -40,11 +40,13 @@ class Equipo extends Operation {
             String nombre = sc3.next();
             int manos = sc3.nextInt();
             String categoria = sc3.next();
+            int modDefensa = sc3.nextInt();
+            int modAtaque = sc3.nextInt();
             while (sc3.hasNext()){
                 String material = sc3.next();
                 lista.add(material);
             }
-            Arma arma = new Arma(nombre,manos,categoria, lista);
+            Arma arma = new Arma(nombre,manos,categoria,lista, modDefensa, modAtaque);
             listaArmas.add(arma);
             cont++;
         }
@@ -58,12 +60,14 @@ class Equipo extends Operation {
             Scanner sc3 = new Scanner(line);
             String nombre = sc3.next();
             String categoria = sc3.next();
+            int modDefensa = sc3.nextInt();
+            int modAtaque = sc3.nextInt();
             
             while (sc3.hasNext()){
                 String material = sc3.next();
                 lista.add(material);
             }
-            Armadura armadura = new Armadura(nombre,categoria,lista);
+            Armadura armadura = new Armadura(nombre,categoria,lista, modAtaque, modDefensa);
             listaArmaduras.add(armadura);
             contador++;
         }
@@ -153,28 +157,24 @@ class Equipo extends Operation {
         System.out.println("¿Que arma desea ofertar?");
         int i = lectura.nextInt();
         
-        listaArmas.get(i);
-        
         oferta.crearOfertaArma(listaArmas.get(i));
-        
-        
-        
         usuario.getListaOfertas().add(oferta); 
-        
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.close();
     }
     
     public void ofertarArmadura(Oferta oferta) throws IOException{
         System.out.println("¿Que armadura desea ofertar?");
         int i = lectura.nextInt();
         
-        listaArmaduras.get(i);
+        oferta.crearOfertaArmadura(listaArmaduras.get(i-1));
+        usuario.getListaOfertas().add(oferta);
+    }
+    
+    public void ofertarEsbirro(Oferta oferta) throws IOException{
+        System.out.println("¿Que esbirro desea ofertar?");
+        int i = lectura.nextInt();
         
-        oferta.crearOfertaArma(listaArmas.get(i));
-        usuario.getListaOfertas().add(listaArmaduras.get(i)); //se procede a comprobar si existe el usuario
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.close();      
+        oferta.crearOfertaEsbirro(listaEsbirros.get(i));
+        usuario.getListaOfertas().add(oferta); 
     }
     
     public void añadirEquipo(){
@@ -191,6 +191,10 @@ class Equipo extends Operation {
             int manos = lectura.nextInt();
             System.out.println("Escribe la categoría del arma");
             String categoria = lectura.next();
+            System.out.println("Escribe el valor del modificador de ataque");
+            int modAtaque = lectura.nextInt();
+            System.out.println("Escribe el valor del modificador de defensa");
+            int modDefensa = lectura.nextInt();
             System.out.println("Escribe los materiales del arma");
             String materiales = lectura.nextLine();
             Scanner sc = new Scanner(materiales);
@@ -200,7 +204,7 @@ class Equipo extends Operation {
                 listaMateriales.add(material);
             }
             
-            Arma new_arma = new Arma(nombre, manos, categoria, listaMateriales);
+            Arma new_arma = new Arma(nombre, manos, categoria, listaMateriales, modAtaque, modDefensa);
             listaArmas.add(new_arma);
         }
         if ("2".equals(opcion)){
@@ -208,6 +212,10 @@ class Equipo extends Operation {
             String nombre = lectura.next();
             System.out.println("Escribe la categoría de la armadura");
             String categoria = lectura.next();
+            System.out.println("Escribe el valor del modificador de ataque");
+            int modAtaque = lectura.nextInt();
+            System.out.println("Escribe el valor del modificador de defensa");
+            int modDefensa = lectura.nextInt();
             System.out.println("Escribe los materiales la armadura");
             String materiales = lectura.nextLine();
             Scanner sc = new Scanner(materiales);
@@ -217,7 +225,7 @@ class Equipo extends Operation {
                 listaMateriales.add(material);
             }
             
-            Armadura new_armadura = new Armadura(nombre, categoria, listaMateriales);
+            Armadura new_armadura = new Armadura(nombre, categoria, listaMateriales, modAtaque, modDefensa);
             listaArmaduras.add(new_armadura);
         }
     }

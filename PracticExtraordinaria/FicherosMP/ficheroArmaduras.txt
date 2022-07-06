@@ -1,5 +1,5 @@
-armadura_diamante epico hierro diamante
-armadura_hierro raro hierro diamante
-armadura_madera raro hierro diamante
-armadura_cristal raro hierro diamante
-armadura_bronce raro hierro diamante
+armadura_diamante epico 3 3 hierro diamante
+armadura_hierro raro 3 9 hierro diamante
+armadura_madera raro 5 6 hierro diamante
+armadura_cristal raro 9 9 hierro diamante
+armadura_bronce raro 0 9 hierro diamante

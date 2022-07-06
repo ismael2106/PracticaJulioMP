@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public class Oferta {
+    private boolean validada;
+    private String nombre;
     private boolean tipoEsbirro= false;
     private boolean tipoEquipo= false;
     private enum categoria{
@@ -27,8 +29,12 @@ public class Oferta {
     private String tipoUsuario;
     private float precio;
     
+    public Oferta() {
+        this.validada = false;
+    }
     
     public void crearOfertaArma(Arma arma){
+        this.nombre = arma.getNombre();
         this.tipoEquipo= true;  
         if ("legendario".equals(arma.getCat())){
             categ.add("legendario");
@@ -75,6 +81,8 @@ public class Oferta {
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-    
-    
+
+    public String getNombre() {
+        return nombre;
+    }   
 }

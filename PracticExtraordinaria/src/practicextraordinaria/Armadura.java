@@ -20,7 +20,7 @@ public class Armadura {
     };
     private categoria cat;
     
-    public Armadura(String nombre, String categ, ArrayList<String> listaMateriales) {
+    public Armadura(String nombre, String categ, ArrayList<String> listaMateriales, int modAtaque, int modDefensa) {
         this.nombre = nombre;
         this.listaMateriales = listaMateriales;
         this.modDefensa = modDefensa;

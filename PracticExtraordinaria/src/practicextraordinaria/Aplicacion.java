@@ -107,6 +107,8 @@ Scanner lectura = new Scanner(System.in);
     
     
     public void login() throws FileNotFoundException, IOException, ClassNotFoundException, InterruptedException{
+        boolean salida = false;
+        while(salida ==false){
         System.out.println("1)Iniciar sesión como usuario");
         System.out.println("2)Iniciar sesión como operador");
         String opcion = lectura.next();
@@ -145,7 +147,6 @@ Scanner lectura = new Scanner(System.in);
         if (encontrado == true){
             if ("1".equals(opcion)){
             usuario = new Usuario(nick,contraseña);
-                System.out.println("adiosss");
             usuario.mostrarMenu();
             }
             
@@ -155,11 +156,11 @@ Scanner lectura = new Scanner(System.in);
             login();
             }
         }
+        }
 
     }
 
     
-
     public void darseBaja() throws FileNotFoundException, IOException{
         boolean encontrado = false;
         BufferedWriter bw;
