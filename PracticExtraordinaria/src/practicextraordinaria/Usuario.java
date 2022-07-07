@@ -100,10 +100,10 @@ public Personaje personaje;
                     System.out.println("2) Armadura");
                     String option = lectura.next();
                     if ("1".equals(option)){
-                        personaje.getEquipo().ofertarArma(oferta);
+                        oferta = personaje.getEquipo().ofertarArma(oferta);
                     }
                     if ("2".equals(option)){
-                        personaje.getEquipo().ofertarArmadura(oferta);
+                        oferta = personaje.getEquipo().ofertarArmadura(oferta);
                     }
                     }
                 else if ("2".equals(opt)){
@@ -112,13 +112,14 @@ public Personaje personaje;
                 }
                 else if ("3".equals(opt)){  
                     if (cont>=1){
-                    /*
+                    
+                    listaOfertas.add(oferta);
                     System.out.println("Quiere ofertar:");
                     cont=listaOfertas.size()-cont;
                     for (int i = cont; i < listaOfertas.size(); i++){
                         System.out.println(listaOfertas.get(i).getNombre());
                     }
-                    */
+                    
                     System.out.println("¿Es correcto?");
                     System.out.println("1)Sí");
                     System.out.println("2)Cancelar oferta");

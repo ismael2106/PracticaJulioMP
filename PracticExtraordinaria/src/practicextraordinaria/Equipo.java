@@ -153,29 +153,31 @@ class Equipo extends Operation {
         }   
     }
     
-    public void ofertarArma(Oferta oferta) throws IOException{
+    public Oferta ofertarArma(Oferta oferta) throws IOException{
         System.out.println("¿Que arma desea ofertar?");
         int i = lectura.nextInt();
         
-        oferta.crearOfertaArma(listaArmas.get(i));
+        oferta = oferta.crearOfertaArma(listaArmas.get(i-1));
         //usuario.getListaOfertas().add(oferta); 
         //creo que aqui no se añade la oferta, se añade al finalizar la oferta
+        return oferta;
     }
     
-    public void ofertarArmadura(Oferta oferta) throws IOException{
+    public Oferta ofertarArmadura(Oferta oferta) throws IOException{
         System.out.println("¿Que armadura desea ofertar?");
         int i = lectura.nextInt();
         
         oferta.crearOfertaArmadura(listaArmaduras.get(i-1));
         //usuario.getListaOfertas().add(oferta);
         //creo que aqui no se añade la oferta, se añade al finalizar la oferta
+        return oferta;        
     }
     
     public void ofertarEsbirro(Oferta oferta) throws IOException{
         System.out.println("¿Que esbirro desea ofertar?");
         int i = lectura.nextInt();
         
-        oferta.crearOfertaEsbirro(listaEsbirros.get(i));
+        oferta.crearOfertaEsbirro(listaEsbirros.get(i-1));
         //usuario.getListaOfertas().add(oferta); 
         //creo que aqui no se añade la oferta, se añade al finalizar la oferta
     }

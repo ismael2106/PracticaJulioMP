@@ -39,3 +39,9 @@ emma --> lala
 emma --> lala
 emma --> a
 emma --> a
+emma --> caz
+emma --> 1
+emma --> as
+emma --> 34
+emma --> emmi
+emma --> lic

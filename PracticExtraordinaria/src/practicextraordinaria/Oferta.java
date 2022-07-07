@@ -33,7 +33,7 @@ public class Oferta {
         this.validada = false;
     }
     
-    public void crearOfertaArma(Arma arma){
+    public Oferta crearOfertaArma(Arma arma){
         this.nombre = arma.getNombre();
         this.tipoEquipo= true;  
         if ("legendario".equals(arma.getCat())){
@@ -50,9 +50,11 @@ public class Oferta {
             }
         valorAtaque.add(arma.getModAtaque());
         valorDefensa.add(arma.getModDefensa());
+        return this;
+        
     }
     
-    public void crearOfertaArmadura(Armadura armadura){
+    public Oferta crearOfertaArmadura(Armadura armadura){
          this.tipoEquipo= true;  
         if ("legendario".equals(armadura.getCat())){
             categ.add("legendario");
@@ -69,6 +71,7 @@ public class Oferta {
         
         valorAtaque.add(armadura.getModAtaque());
         valorDefensa.add(armadura.getModDefensa());  
+        return this;
     }
     public void crearOfertaEsbirro(Esbirro esbirro){
         this.tipoEsbirro= true;    
