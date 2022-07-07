@@ -60,6 +60,7 @@ Scanner lectura = new Scanner(System.in);
         
         System.out.println("1)Registrarse como usuario");
         System.out.println("2)Registrarse como operador");
+        System.out.println("3)Salir");
         String opcion = lectura.next();
 
         if ("1".equals(opcion)){
@@ -67,6 +68,9 @@ Scanner lectura = new Scanner(System.in);
         }
         else if ("2".equals(opcion)){
             ficheroEscogido = "FicherosMP/ficheroOperadores.txt";
+        }
+        else if ("3".equals(opcion)){
+            salir();
         }
         boolean encontrado = false;
         System.out.print("Inserte su nick: ");
@@ -111,6 +115,7 @@ Scanner lectura = new Scanner(System.in);
         while(salida ==false){
         System.out.println("1)Iniciar sesión como usuario");
         System.out.println("2)Iniciar sesión como operador");
+        System.out.println("3)Salir");
         String opcion = lectura.next();
 
         if ("1".equals(opcion)){
@@ -118,6 +123,9 @@ Scanner lectura = new Scanner(System.in);
         }
         else if ("2".equals(opcion)){
         ficheroEscogido = "FicherosMP/ficheroOperadores.txt";
+        }
+        else if ("3".equals(opcion)){
+        salir();
         }
         boolean encontrado = false;
         BufferedWriter bw;

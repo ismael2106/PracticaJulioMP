@@ -45,3 +45,6 @@ emma --> as
 emma --> 34
 emma --> emmi
 emma --> lic
+emma --> hf
+emma --> cazd
+emma --> 0

@@ -173,11 +173,24 @@ public Personaje personaje;
     }
     
     public void serializarOfertas(String file,ListaDeOfertas lista) throws FileNotFoundException, IOException{
-        File fich = new File(file);
+        /*File fich = new File(file);
         FileOutputStream f = new FileOutputStream(fich);
         ObjectOutputStream obj = new ObjectOutputStream(f);
         obj.writeObject(lista);
+        obj.close();*/
         
+        try {
+            ArrayList <Oferta> list = new ArrayList<>();
+            list = (ArrayList<Oferta>) listaOfertas;
+            
+            FileOutputStream fileSerialize = new FileOutputStream("FicherosMP/ficheroOfertas.bin");
+            ObjectOutputStream salida = new ObjectOutputStream(fileSerialize);
+            salida.writeObject(list);
+            salida.close();
+            
+        }catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     public ArrayList<Oferta> getListaOfertas() {
