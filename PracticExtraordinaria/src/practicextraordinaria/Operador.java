@@ -24,13 +24,14 @@ public class Operador implements java.io.Serializable{
     ArrayList<String> listaBaneados = new ArrayList();
     ArrayList<Oferta> listaOfertas;
     
-    Scanner lectura = new Scanner(System.in);
+   
 
     public Operador(String nick, String contraseña) {
         this.nick = nick;
         this.contraseña = contraseña;
     }
     public void mostrarMenu() throws IOException, FileNotFoundException, ClassNotFoundException{
+         Scanner lectura = new Scanner(System.in);
         boolean salida = false;
         while (salida == false){
             System.out.println("1) VALIDAR OFERTA");
@@ -63,6 +64,7 @@ public class Operador implements java.io.Serializable{
     
     
     public void validarOferta() throws IOException, FileNotFoundException, ClassNotFoundException{
+         Scanner lectura = new Scanner(System.in);
         String ficheroOfertas = "FicherosMP/ficheroOfertas.bin";
         File f = new File(ficheroOfertas);
         deserializar(f);
@@ -134,6 +136,7 @@ public class Operador implements java.io.Serializable{
     }
     
     public void banear() throws FileNotFoundException, IOException{
+         Scanner lectura = new Scanner(System.in);
         String ficheroEscogido = "FicherosMP/ficheroBaneados.txt";
         System.out.println("Escriba el nick del usuario que desea banear:");
        
@@ -170,6 +173,7 @@ public class Operador implements java.io.Serializable{
 
 
     public void desbanear() throws IOException{
+         Scanner lectura = new Scanner(System.in);
         
         String ficheroEscogido = "FicherosMP/ficheroUsuarios.txt";
         System.out.println("Escriba el nick del usuario que desea desbanear:");

@@ -21,7 +21,7 @@ private Usuario usuario;
 private Operador operador;
 
 
-Scanner lectura = new Scanner(System.in);
+
 
     Aplicacion() throws IOException, FileNotFoundException, ClassNotFoundException {
 
@@ -29,7 +29,7 @@ Scanner lectura = new Scanner(System.in);
     
     
     public void mostrarMenu() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
-
+        Scanner lectura = new Scanner(System.in);
         System.out.println("1) REGISTRARSE");
         System.out.println("2) INICIAR SESION");
         System.out.println("3) DARSE DE BAJA");
@@ -57,7 +57,7 @@ Scanner lectura = new Scanner(System.in);
     
     
     public void registrarse () throws FileNotFoundException, IOException, ClassNotFoundException, InterruptedException {
-        
+        Scanner lectura = new Scanner(System.in);
         System.out.println("1)Registrarse como usuario");
         System.out.println("2)Registrarse como operador");
         System.out.println("3)Salir");
@@ -111,6 +111,7 @@ Scanner lectura = new Scanner(System.in);
     
     
     public void login() throws FileNotFoundException, IOException, ClassNotFoundException, InterruptedException{
+       Scanner lectura = new Scanner(System.in);
         boolean salida = false;
         while(salida ==false){
         System.out.println("1)Iniciar sesión como usuario");
@@ -173,6 +174,7 @@ Scanner lectura = new Scanner(System.in);
 
     
     public void darseBaja() throws FileNotFoundException, IOException{
+        Scanner lectura = new Scanner(System.in);
         boolean encontrado = false;
         BufferedWriter bw;
 

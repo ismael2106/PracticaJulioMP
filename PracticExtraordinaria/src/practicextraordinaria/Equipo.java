@@ -14,20 +14,21 @@ import java.util.Scanner;
  * @author emmar
  */
 class Equipo extends Operation implements java.io.Serializable{
-    Scanner lectura = new Scanner(System.in);
+    
     
     ArrayList<Arma> listaArmas = new ArrayList<Arma>();
     ArrayList<Armadura> listaArmaduras = new ArrayList<Armadura>();
     ArrayList<Esbirro> listaEsbirros = new ArrayList<Esbirro>();
+    ArrayList<String> listaMateriales = new ArrayList<>();
     
     
     
     public Equipo(Usuario usuario) throws FileNotFoundException {
         super(usuario);
-        insertarArmasArmaduras();
-        insertarEsbirros();
+        //insertarArmasArmaduras();
+        //insertarEsbirros();
     }
-    
+    /*
     public void insertarArmasArmaduras() throws FileNotFoundException{
         File ficheroArmas = new File("FicherosMP/ficheroArmas.txt");
         Scanner sc = new Scanner(ficheroArmas);
@@ -90,7 +91,7 @@ class Equipo extends Operation implements java.io.Serializable{
             cont++;
         }
     }
-    
+    */
     public void consultarEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException {
         System.out.println("-------------------------------------");
         System.out.println("ARMAS DISPONIBLES:");
@@ -115,6 +116,7 @@ class Equipo extends Operation implements java.io.Serializable{
         
     }
     public void menuEquipo() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
+        Scanner lectura = new Scanner(System.in);
         System.out.println("1) Añadir equipo");
         System.out.println("2) Borrar equipo");
         
@@ -135,6 +137,7 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     public void menuEsbirros () throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
+        Scanner lectura = new Scanner(System.in);
         System.out.println("1) Añadir esbirro");
         System.out.println("2) Borrar esbirro");
         
@@ -154,6 +157,7 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     public Oferta ofertarArma(Oferta oferta) throws IOException{
+        Scanner lectura = new Scanner(System.in);
         System.out.println("¿Que arma desea ofertar?");
         int i = lectura.nextInt();
         
@@ -164,6 +168,7 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     public Oferta ofertarArmadura(Oferta oferta) throws IOException{
+        Scanner lectura = new Scanner(System.in);
         System.out.println("¿Que armadura desea ofertar?");
         int i = lectura.nextInt();
         
@@ -174,6 +179,7 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     public void ofertarEsbirro(Oferta oferta) throws IOException{
+        Scanner lectura = new Scanner(System.in);
         System.out.println("¿Que esbirro desea ofertar?");
         int i = lectura.nextInt();
         
@@ -183,6 +189,7 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     public void añadirEquipo(){
+        Scanner lectura = new Scanner(System.in);
         System.out.println("¿Qué quieres añadir?");
         System.out.println("1) Arma");
         System.out.println("2) Armadura");
@@ -200,16 +207,17 @@ class Equipo extends Operation implements java.io.Serializable{
             int modAtaque = lectura.nextInt();
             System.out.println("Escribe el valor del modificador de defensa");
             int modDefensa = lectura.nextInt();
+            lectura.nextLine();
             System.out.println("Escribe los materiales del arma");
             String materiales = lectura.nextLine();
             Scanner sc = new Scanner(materiales);
-            ArrayList<String> listaMateriales = new ArrayList();
+            /*ArrayList<String> listaMateriales = new ArrayList();
             while (sc.hasNext()){
                 String material = sc.next();
                 listaMateriales.add(material);
-            }
+            }*/
             
-            Arma new_arma = new Arma(nombre, manos, categoria, listaMateriales, modAtaque, modDefensa);
+            Arma new_arma = new Arma(nombre, manos, categoria, materiales, modAtaque, modDefensa);
             listaArmas.add(new_arma);
         }
         if ("2".equals(opcion)){
@@ -224,7 +232,7 @@ class Equipo extends Operation implements java.io.Serializable{
             System.out.println("Escribe los materiales la armadura");
             String materiales = lectura.nextLine();
             Scanner sc = new Scanner(materiales);
-            ArrayList<String> listaMateriales = new ArrayList();
+            //ArrayList<String> listaMateriales = new ArrayList();
             while (sc.hasNext()){
                 String material = sc.next();
                 listaMateriales.add(material);
@@ -236,6 +244,7 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     public void borrarEquipo(){
+        Scanner lectura = new Scanner(System.in);
         System.out.println("¿Qué quieres borrar?");
         System.out.println("1) Arma");
         System.out.println("2) Armadura");
@@ -255,6 +264,7 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     public void añadirEsbirro(){
+        Scanner lectura = new Scanner(System.in);
         System.out.println("Escribe el nombre del nuevo esbirro");
         String nombre = lectura.next();
         System.out.println("Escribe el tipo del esbirro");
@@ -281,6 +291,7 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     public void borrarEsbirro(){
+        Scanner lectura = new Scanner(System.in);
         System.out.println("¿Qué esbirro desea borrar?");        
         int opcion = lectura.nextInt();
         

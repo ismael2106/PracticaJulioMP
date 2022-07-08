@@ -18,6 +18,11 @@ public class Esbirro implements java.io.Serializable{
     enum tipo{
         humano,ghoul,demonio;
     }
+    public tipo tipoEsbirro;
+    
+    public Humano humano;
+    public Ghoul ghoul;
+    public Demonio demonio;
     
     
     public Esbirro(String nombre, String t, String cosa) {
@@ -26,15 +31,15 @@ public class Esbirro implements java.io.Serializable{
         this.nombre = nombre;
         
         if ("humano".equals(t)){
-            tipo type = tipo.humano;
-            Humano humano = new Humano(cosa);
+            tipoEsbirro = tipo.humano;
+            humano = new Humano(cosa);
         }
         if ("ghoul".equals(t)){
-            tipo type = tipo.ghoul;
+            tipoEsbirro = tipo.ghoul;
             Ghoul ghoul = new Ghoul(cosa);
         }
         if ("denomio".equals(t)){
-            tipo type = tipo.demonio;
+            tipoEsbirro = tipo.demonio;
             Demonio demonio = new Demonio(cosa);
         }
         
@@ -44,4 +49,27 @@ public class Esbirro implements java.io.Serializable{
     public String getNombre() {
         return nombre;
     }
+
+    public int getSalud() {
+        return salud;
     }
+
+    public tipo getTipoEsbirro() {
+        return tipoEsbirro;
+    }
+
+    public Humano getHumano() {
+        return humano;
+    }
+
+    public Ghoul getGhoul() {
+        return ghoul;
+    }
+
+    public Demonio getDemonio() {
+        return demonio;
+    }
+    
+    
+    
+}

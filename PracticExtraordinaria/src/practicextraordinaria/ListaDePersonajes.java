@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public class ListaDePersonajes implements Serializable{
-    ArrayList<Personaje> listaPersonajes;
+    ArrayList<Personaje> listaPersonajes = new ArrayList<>();
     
     ListaDePersonajes(ArrayList lista){
         listaPersonajes = lista;

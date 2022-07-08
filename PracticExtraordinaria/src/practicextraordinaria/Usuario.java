@@ -17,14 +17,14 @@ import java.util.logging.Logger;
 */
 public class Usuario implements Serializable{
 
-Scanner lectura = new Scanner(System.in);
+
 
 private String nick;
 private String nombre;
 private String contraseña;
 private String numReg;
 public File ficheroUsuario;
-public File ficheroOfertas;
+public File ficheroOfertas = new File ("FicherosMP/ficheroOfertas.bin");
 private Usuario usuario;
 private Oferta oferta;
 private ArrayList<Oferta> listaOfertas= new ArrayList();
@@ -55,11 +55,10 @@ public ListaDePersonajes clasePersonajes;
         
         
         listaPersonajes = clasePersonajes.getListaPersonajes();
-        System.out.println("hola");
         
         for(int i = 0; i<listaPersonajes.size();i++){
             if(listaPersonajes.get(i).getNick().equals(nick)){
-                personaje = listaPersonajes.get(i);
+                personaje = listaPersonajes.get(i); //suponemos que ambos apuntan al mismo sitio y se actualiza automaticamente
                 return true;
             }
         }
@@ -74,16 +73,18 @@ public ListaDePersonajes clasePersonajes;
         File f = new File(fPersonajes);
         
         FileOutputStream fileStream = new FileOutputStream(f);
-        ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+        try (ObjectOutputStream objectStream = new ObjectOutputStream(fileStream)) {
+            objectStream.writeObject(clasePersonajes);
+            objectStream.close();
+    }
         
-        objectStream.writeObject(clasePersonajes);
-        objectStream.close();
         
         
         
     }
     
     public void mostrarMenu() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
+        Scanner lectura = new Scanner(System.in);
         if(!comprobarPersonajes()){
             personaje.registrarPersonaje();
             listaPersonajes.add(personaje);
@@ -105,11 +106,12 @@ public ListaDePersonajes clasePersonajes;
                 String c = lectura.next();
 
                 if ("1".equals(c)){
-                    //darDeBajaPersonaje();
+                    darDeBajaPersonaje();
                 }
                 else if ("2".equals(c)){
                     personaje.getEquipo().consultarEquipo();  
                     personaje.getEquipo().menuEquipo();
+                    System.out.println("hola");
                 }
                 else if ("3".equals(c)){
                     personaje.consultarOro();
@@ -123,7 +125,7 @@ public ListaDePersonajes clasePersonajes;
                 }
                 else if ("6".equals(c)){
                     oferta = new Oferta();
-                    ficheroOfertas = new File ("FicherosMP/ficheroOfertas.bin");
+                    
                     if (isFileEmpty(ficheroOfertas)){
                         listaOfertas = new ArrayList<Oferta>(); 
                     }
@@ -199,7 +201,7 @@ public ListaDePersonajes clasePersonajes;
                 } //end op 6
 
                 else if ("7".equals(c)){
-                    //consultarOfertas();
+                    consultarOfertas();
                 }
                 else if ("8".equals(c)){
                     serializarPersonajes();
@@ -305,7 +307,36 @@ public ListaDePersonajes clasePersonajes;
     }
 
     public void darDeBajaPersonaje(){
+        for(int i = 0; i<listaPersonajes.size();i++){
+            if(listaPersonajes.get(i).getNick().equals(nick)){
+                listaPersonajes.remove(i);
+            }
+        }
+        System.out.println("Personaje eliminado con éxito, vuelva pronto!");
+        
     
+    }
+    
+    public void consultarOfertas() throws IOException, FileNotFoundException, ClassNotFoundException{
+        deserializar(ficheroOfertas);
+        for(int i = 0; i<listaOfertas.size();i++){
+            if(listaOfertas.get(i).isValidada()){
+                System.out.println("Oferta de "+listaOfertas.get(i).getTipoUsuario());
+                for(int j = 0; j<listaOfertas.get(j).getListaNombres().size();j++){
+                    System.out.println("-------------");
+                    System.out.println("Nombre: "+listaOfertas.get(j).getListaNombres().get(j));
+                    System.out.println("Categoría: "+listaOfertas.get(j).getCateg().get(j));
+                    System.out.println("Lealtad: "+listaOfertas.get(j).getLeal().get(j));
+                    System.out.println("Valor ataque: "+listaOfertas.get(j).getValorAtaque().get(j));
+                    System.out.println("Valor defensa: "+listaOfertas.get(j).getValorDefensa().get(j));
+                    System.out.println("Precio: "+listaOfertas.get(j).getPrecio());
+                    
+                    
+                }
+                
+            }
+        }
+        
     }
 
     public void elegirEquipo(){

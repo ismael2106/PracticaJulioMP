@@ -28,7 +28,7 @@ public class Personaje extends Operation implements java.io.Serializable{
     private File ficheroOfertas= new File("FicherosMP/ficheroOfertas.txt");
     private String tipo;
     
-    Scanner lectura = new Scanner(System.in);
+    
     
     
 
@@ -42,6 +42,7 @@ public class Personaje extends Operation implements java.io.Serializable{
     }
     
     public void registrarPersonaje() throws IOException, InterruptedException {
+        Scanner lectura = new Scanner(System.in);
         getTipo();
         System.out.print("Escriba el nombre que desea para su personaje: ");
         setNombre(lectura.next());
@@ -56,6 +57,7 @@ public class Personaje extends Operation implements java.io.Serializable{
     }
     
     public void consultarOro(){
+        Scanner lectura = new Scanner(System.in);
         System.out.println("Tu oro actual es: "+getOro());
         System.out.println("---------------------------");
         System.out.println("1)Añadir oro");

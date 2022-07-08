@@ -13,14 +13,14 @@ import java.util.ArrayList;
  */
 public class Oferta implements java.io.Serializable{
     private boolean validada;
-    private String nombre;
+    private ArrayList<String> listaNombres = new ArrayList<>();
     private boolean tipoEsbirro= false;
     private boolean tipoEquipo= false;
     private enum categoria{
-        legendario, comun, raro, epico;
+        legendario, comun, raro, epico, nulo;
     };
     private enum lealtad{
-        alta, media, baja;
+        alta, media, baja, nulo;
     };
     private ArrayList<String> categ = new ArrayList<>();
     private ArrayList<String> leal= new ArrayList<>();
@@ -34,28 +34,31 @@ public class Oferta implements java.io.Serializable{
     }
     
     public Oferta crearOfertaArma(Arma arma){
-        this.nombre = arma.getNombre();
+        listaNombres.add(arma.getNombre());
         this.tipoEquipo= true;  
         if ("legendario".equals(arma.getCat())){
             categ.add("legendario");
             }
-        if ("comun".equals(arma.getCat())){
+        else if ("comun".equals(arma.getCat())){
             categ.add("comun");
             }
-        if ("raro".equals(arma.getCat())){
+        else if ("raro".equals(arma.getCat())){
             categ.add("raro");
             }
-        if ("epico".equals(arma.getCat())){
+        else if ("epico".equals(arma.getCat())){
             categ.add("epico");
             }
         valorAtaque.add(arma.getModAtaque());
         valorDefensa.add(arma.getModDefensa());
+        leal.add("nulo");
+        
         return this;
         
     }
     
     public Oferta crearOfertaArmadura(Armadura armadura){
-         this.tipoEquipo= true;  
+        listaNombres.add(armadura.getNombre());
+        this.tipoEquipo= true;  
         if ("legendario".equals(armadura.getCat())){
             categ.add("legendario");
             }
@@ -70,11 +73,30 @@ public class Oferta implements java.io.Serializable{
             }
         
         valorAtaque.add(armadura.getModAtaque());
-        valorDefensa.add(armadura.getModDefensa());  
+        valorDefensa.add(armadura.getModDefensa());
+        leal.add("nulo");
         return this;
     }
     public void crearOfertaEsbirro(Esbirro esbirro){
-        this.tipoEsbirro= true;    
+        listaNombres.add(esbirro.getNombre());
+        this.tipoEsbirro= true;  
+        categ.add("nulo");
+        valorAtaque.add(0);
+        valorDefensa.add(0);
+        if("humano".equals(esbirro.getTipoEsbirro())){
+            if("ALTA".equals(esbirro.getHumano().loyalty)){
+                leal.add("ALTA");
+            }
+            if("NORMAL".equals(esbirro.getHumano().loyalty)){
+                leal.add("NORMAL");
+            }
+            if("BAJA".equals(esbirro.getHumano().loyalty)){
+                leal.add("BAJA");
+            }
+            
+        }
+        
+        
     }
 
     public void setPrecio(float precio) {
@@ -85,8 +107,8 @@ public class Oferta implements java.io.Serializable{
         this.tipoUsuario = tipoUsuario;
     }
 
-    public String getNombre() {
-        return nombre;
+    public ArrayList getListaNombres() {
+        return listaNombres;
     }
 
     public boolean isValidada() {
@@ -95,6 +117,30 @@ public class Oferta implements java.io.Serializable{
 
     public void setValidada(boolean validada) {
         this.validada = validada;
+    }
+
+    public ArrayList<String> getCateg() {
+        return categ;
+    }
+
+    public ArrayList<String> getLeal() {
+        return leal;
+    }
+
+    public ArrayList<Integer> getValorAtaque() {
+        return valorAtaque;
+    }
+
+    public ArrayList<Integer> getValorDefensa() {
+        return valorDefensa;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public float getPrecio() {
+        return precio;
     }
     
     

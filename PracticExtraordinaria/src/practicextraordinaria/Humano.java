@@ -9,6 +9,7 @@ import java.util.HashSet;
 public class Humano implements java.io.Serializable {
     HashSet<Esbirro> conjuntoEsbirros = new HashSet();  
     lealtad loyalty;
+
     enum lealtad{
         alta,normal,baja;
     }
@@ -25,4 +26,9 @@ public class Humano implements java.io.Serializable {
         }
         
     }
+
+    public lealtad getLoyalty() {
+        return loyalty;
+    }
+    
 }

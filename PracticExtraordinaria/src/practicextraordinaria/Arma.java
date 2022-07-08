@@ -25,24 +25,25 @@ public class Arma implements java.io.Serializable{
     };
     private categoria cat;
     
-    private ArrayList<String> listaMateriales;
+    private String listaMateriales;
     
-    public Arma(String nombre, int manos, String categ, ArrayList<String> listaMateriales, int modDefensa, int modAtaque) {
+    public Arma(String nombre, int manos, String categ, String listaMateriales, int modDefensa, int modAtaque) {
+        this.listaMateriales = listaMateriales;
         this.nombre = nombre;
         this.manos = manos;
         this.modDefensa = modDefensa;
         this.modAtaque = modAtaque;
         
-         if ("legendario".equals(categ)){
+        if ("legendario".equals(categ)){
             cat = categoria.legendario;
         }
-         if ("comun".equals(categ)){
+        else if ("comun".equals(categ)){
             cat = categoria.comun;
         }
-         if ("raro".equals(categ)){
+        else if ("raro".equals(categ)){
             cat = categoria.raro;
         }
-         if ("epico".equals(categ)){
+        else if ("epico".equals(categ)){
             cat = categoria.epico;
         }
     }
