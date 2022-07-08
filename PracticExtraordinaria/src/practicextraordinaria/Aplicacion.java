@@ -14,7 +14,7 @@ import java.util.Scanner;
 *
 * @author paula
 */
-public class Aplicacion {
+public class Aplicacion implements java.io.Serializable{
 
 private String ficheroEscogido;
 private Usuario usuario;
@@ -155,13 +155,16 @@ Scanner lectura = new Scanner(System.in);
         if (encontrado == true){
             if ("1".equals(opcion)){
             usuario = new Usuario(nick,contraseña);
+            //recorrer fichero binario de personajes
             usuario.mostrarMenu();
+            salida = true;
             }
             
             else if ("2".equals(opcion)){
             operador = new Operador(nick, contraseña);
             operador.mostrarMenu();
             login();
+            
             }
         }
         }

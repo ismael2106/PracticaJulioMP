@@ -9,7 +9,7 @@ import java.util.Scanner;
  *
  * @author paula
  */
-public class Armadura {
+public class Armadura implements java.io.Serializable{
     public String nombre;
     private ArrayList<String> listaMateriales;
     private int modDefensa;

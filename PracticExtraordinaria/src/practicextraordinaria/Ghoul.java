@@ -9,7 +9,7 @@ package practicextraordinaria;
  *
  * @author emmar
  */
-public class Ghoul {
+public class Ghoul implements java.io.Serializable{
     int dependencia;
     
     public Ghoul(String dependencia){

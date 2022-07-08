@@ -6,7 +6,7 @@ import java.util.HashSet;
  *
  * @author emmar
  */
-public class Humano {
+public class Humano implements java.io.Serializable {
     HashSet<Esbirro> conjuntoEsbirros = new HashSet();  
     lealtad loyalty;
     enum lealtad{

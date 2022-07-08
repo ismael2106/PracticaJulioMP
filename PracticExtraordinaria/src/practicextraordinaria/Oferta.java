@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Usuario
  */
-public class Oferta {
+public class Oferta implements java.io.Serializable{
     private boolean validada;
     private String nombre;
     private boolean tipoEsbirro= false;
@@ -87,5 +87,15 @@ public class Oferta {
 
     public String getNombre() {
         return nombre;
-    }   
+    }
+
+    public boolean isValidada() {
+        return validada;
+    }
+
+    public void setValidada(boolean validada) {
+        this.validada = validada;
+    }
+    
+    
 }

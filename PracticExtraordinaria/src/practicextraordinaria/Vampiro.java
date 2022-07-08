@@ -8,7 +8,7 @@ package practicextraordinaria;
  *
  * @author paula
  */
-class Vampiro {
+class Vampiro implements java.io.Serializable {
     
     private int sangre;
     private int edad;

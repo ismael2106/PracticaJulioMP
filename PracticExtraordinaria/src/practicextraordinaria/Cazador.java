@@ -8,7 +8,7 @@ package practicextraordinaria;
  *
  * @author paula
  */
-class Cazador {
+class Cazador implements java.io.Serializable{
     
     private int Voluntad;
 

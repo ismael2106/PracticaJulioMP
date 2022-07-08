@@ -29,6 +29,8 @@ private Usuario usuario;
 private Oferta oferta;
 private ArrayList<Oferta> listaOfertas= new ArrayList();
 public Personaje personaje;
+public ArrayList<Personaje> listaPersonajes = new ArrayList();
+public ListaDePersonajes clasePersonajes;
 
 //private String tipo;
 
@@ -38,129 +40,182 @@ public Personaje personaje;
         this.nick = nick;
         this.contraseña = contraseña;
         personaje = new Personaje(this);
-        personaje.registrarPersonaje();
     }
-
+    
+    public boolean comprobarPersonajes() throws IOException, ClassNotFoundException{
+        String fPersonajes = "FicherosMP/ficheroPersonajesBin.bin";
+        File f = new File(fPersonajes);
+        if(isFileEmpty(f)){
+            return false;
+        }
+        FileInputStream fileStream = new FileInputStream(f);
+        ObjectInputStream objectStream = new ObjectInputStream(fileStream);            
+        clasePersonajes = (ListaDePersonajes) objectStream.readObject();
+        objectStream.close();
+        
+        
+        listaPersonajes = clasePersonajes.getListaPersonajes();
+        System.out.println("hola");
+        
+        for(int i = 0; i<listaPersonajes.size();i++){
+            if(listaPersonajes.get(i).getNick().equals(nick)){
+                personaje = listaPersonajes.get(i);
+                return true;
+            }
+        }
+        return false;      
+    }
+    
+    public void serializarPersonajes() throws FileNotFoundException, IOException{
+        
+        clasePersonajes = new ListaDePersonajes(listaPersonajes);
+        
+        String fPersonajes = "FicherosMP/ficheroPersonajesBin.bin";
+        File f = new File(fPersonajes);
+        
+        FileOutputStream fileStream = new FileOutputStream(f);
+        ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
+        
+        objectStream.writeObject(clasePersonajes);
+        objectStream.close();
+        
+        
+        
+    }
+    
     public void mostrarMenu() throws IOException, FileNotFoundException, ClassNotFoundException, InterruptedException{
-        boolean salida = false;
-        while (salida == false){
-            System.out.println("1) DAR DE BAJA PERSONAJE");
-            System.out.println("2) CONSULTAR EQUIPO");
-            System.out.println("3) CONSULTAR ORO");
-            System.out.println("4) CONSULTAR ESBIRROS");
-            System.out.println("5) SUBSCRIBIRSE A OFERTA");
-            System.out.println("6) PUBLICAR OFERTA");
-            System.out.println("7) CONSULTAR OFERTAS PUBLICADAS");
-            System.out.println("8) SALIR");
+        if(!comprobarPersonajes()){
+            personaje.registrarPersonaje();
+            listaPersonajes.add(personaje);
+            serializarPersonajes();
+            System.out.println("Personaje creado con éxito, vuelva a iniciar sesión");
+        }
+        else{
+            boolean salida = false;
+            while (salida == false){
+                System.out.println("1) DAR DE BAJA PERSONAJE");
+                System.out.println("2) CONSULTAR EQUIPO");
+                System.out.println("3) CONSULTAR ORO");
+                System.out.println("4) CONSULTAR ESBIRROS");
+                System.out.println("5) SUBSCRIBIRSE A OFERTA");
+                System.out.println("6) PUBLICAR OFERTA");
+                System.out.println("7) CONSULTAR OFERTAS PUBLICADAS");
+                System.out.println("8) SALIR");
 
-            String c = lectura.next();
+                String c = lectura.next();
 
-            if ("1".equals(c)){
-                //darDeBajaPersonaje();
-            }
-            else if ("2".equals(c)){
-                personaje.getEquipo().consultarEquipo();  
-                personaje.getEquipo().menuEquipo();
-            }
-            else if ("3".equals(c)){
-                personaje.consultarOro();
-            }
-            else if ("4".equals(c)){
-                personaje.getEquipo().consultarEsbirros();
-                personaje.getEquipo().menuEsbirros();
-            }
-            else if ("5".equals(c)){
-                //subscribirseOferta();
-            }
-            else if ("6".equals(c)){
-                oferta = new Oferta();
-                ficheroOfertas = new File ("FicherosMP/ficheroOfertas.bin");
-                if (isFileEmpty(ficheroOfertas)){
-                    listaOfertas = new ArrayList<Oferta>(); //DA ERROR SI NO SE CREA GLOBAL Y ENTRA AL ELSE
+                if ("1".equals(c)){
+                    //darDeBajaPersonaje();
                 }
-                else {
-                    //deserializar(ficheroOfertas); //COMENTADO PQ DA ERROR
+                else if ("2".equals(c)){
+                    personaje.getEquipo().consultarEquipo();  
+                    personaje.getEquipo().menuEquipo();
                 }
-                boolean sal = false;
-                int cont = 0;
-                while(sal == false){
-                System.out.println("¿Qué desea ofertar?");
-                System.out.println("1) Equipo");
-                System.out.println("2) Esbirros");
-                System.out.println("3) Terminar oferta");
-                String opt = lectura.next();
-                if (!"3".equals(opt)){
-                    cont++;
+                else if ("3".equals(c)){
+                    personaje.consultarOro();
                 }
-                
-                if ("1".equals(opt)){
-                    personaje.getEquipo().consultarEquipo();
-                    System.out.println("¿Qué va a ofertar?");
-                    System.out.println("1) Arma");
-                    System.out.println("2) Armadura");
-                    String option = lectura.next();
-                    if ("1".equals(option)){
-                        oferta = personaje.getEquipo().ofertarArma(oferta);
-                    }
-                    if ("2".equals(option)){
-                        oferta = personaje.getEquipo().ofertarArmadura(oferta);
-                    }
-                    }
-                else if ("2".equals(opt)){
-                    personaje.getEquipo().consultarEsbirros();                    
-                    personaje.getEquipo().ofertarEsbirro(oferta);                    
+                else if ("4".equals(c)){
+                    personaje.getEquipo().consultarEsbirros();
+                    personaje.getEquipo().menuEsbirros();
                 }
-                else if ("3".equals(opt)){  
-                    if (cont>=1){
-                    
-                    listaOfertas.add(oferta);
-                    System.out.println("Quiere ofertar:");
-                    cont=listaOfertas.size()-cont;
-                    for (int i = cont; i < listaOfertas.size(); i++){
-                        System.out.println(listaOfertas.get(i).getNombre());
+                else if ("5".equals(c)){
+                    //subscribirseOferta();
+                }
+                else if ("6".equals(c)){
+                    oferta = new Oferta();
+                    ficheroOfertas = new File ("FicherosMP/ficheroOfertas.bin");
+                    if (isFileEmpty(ficheroOfertas)){
+                        listaOfertas = new ArrayList<Oferta>(); 
                     }
-                    
-                    System.out.println("¿Es correcto?");
-                    System.out.println("1)Sí");
-                    System.out.println("2)Cancelar oferta");
-                    
-                    String e = lectura.next();
-                    if ("1".equals(e)){
-                        System.out.println("Inserte el precio de su oferta");
-                        float precio = lectura.nextFloat();
-                        oferta.setPrecio(precio);
-                        oferta.setTipoUsuario(nick);
+                    else {
+                        deserializar(ficheroOfertas); //COMENTADO PQ DA ERROR
+                    }
+                    boolean sal = false;
+                    int cont = 0;
+                    while(sal == false){
+                    System.out.println("¿Qué desea ofertar?");
+                    System.out.println("1) Equipo");
+                    System.out.println("2) Esbirros");
+                    System.out.println("3) Terminar oferta");
+                    String opt = lectura.next();
+                    if (!"3".equals(opt)){
+                        cont++;
+                    }
 
+                    if ("1".equals(opt)){
+                        personaje.getEquipo().consultarEquipo();
+                        System.out.println("¿Qué va a ofertar?");
+                        System.out.println("1) Arma");
+                        System.out.println("2) Armadura");
+                        String option = lectura.next();
+                        if ("1".equals(option)){
+                            oferta = personaje.getEquipo().ofertarArma(oferta);
+                        }
+                        if ("2".equals(option)){
+                            oferta = personaje.getEquipo().ofertarArmadura(oferta);
+                        }
+                        }
+                    else if ("2".equals(opt)){
+                        personaje.getEquipo().consultarEsbirros();                    
+                        personaje.getEquipo().ofertarEsbirro(oferta);                    
+                    }
+                    else if ("3".equals(opt)){
+
+                        if (cont>=1){
+                        /*
                         listaOfertas.add(oferta);
-                        ListaDeOfertas listaOf = new ListaDeOfertas(listaOfertas);
-                        serializarOfertas("FicherosMP/ficheroOfertas.bin",listaOf);
+                        System.out.println("Quiere ofertar:");
+                        cont=listaOfertas.size()-cont;
+                        for (int i = cont; i < listaOfertas.size(); i++){
+                            System.out.println(listaOfertas.get(i).getNombre());
+                        }
+                        */
+                        System.out.println("¿Es correcto?");
+                        System.out.println("1)Sí");
+                        System.out.println("2)Cancelar oferta");
 
-                        System.out.println("Oferta publicada con éxito");
-                        System.out.println("--------------------------");
+                        String e = lectura.next();
+                        if ("1".equals(e)){
+                            System.out.println("Inserte el precio de su oferta");
+                            float precio = lectura.nextFloat();
+                            oferta.setPrecio(precio);
+                            oferta.setTipoUsuario(nick);
 
-                        sal = true;
+                            listaOfertas.add(oferta);
+                            ListaDeOfertas listaOf = new ListaDeOfertas(listaOfertas);
+                            serializarOfertas("FicherosMP/ficheroOfertas.bin",listaOf);
+
+                            System.out.println("Oferta publicada con éxito");
+                            System.out.println("--------------------------");
+
+                            sal = true;
+                        }
+                        if ("2".equals(e)){
+                            sal = true;
+                        }
+                        }
                     }
-                    if ("2".equals(e)){
-                        sal = true;
-                    }
-                    }
+                    }//end while ofertar
+                } //end op 6
+
+                else if ("7".equals(c)){
+                    //consultarOfertas();
                 }
-                }//end while ofertar
-            } //end op 6
-        
-            else if ("7".equals(c)){
-                //consultarOfertas();
-            }
-            else if ("8".equals(c)){
-                salida = true;
-                
-            }
-        }//end while menu
-    } //end mostrarMenu()
-        
+                else if ("8".equals(c)){
+                    serializarPersonajes();
+                    salida = true;
+
+                }
+            }//end while menu
+        } //end comprobarPersonajes
+    }//end mostrarMenu()   
     public boolean isFileEmpty(File file) {
     return file.length() == 0;
     }
+    
+    
+    
+    
     
     public void deserializar(File fichero) throws FileNotFoundException, IOException, ClassNotFoundException{
             FileInputStream fileStream = new FileInputStream(ficheroOfertas);
@@ -173,11 +228,12 @@ public Personaje personaje;
     }
     
     public void serializarOfertas(String file,ListaDeOfertas lista) throws FileNotFoundException, IOException{
-        /*File fich = new File(file);
+        File fich = new File(file);
         FileOutputStream f = new FileOutputStream(fich);
         ObjectOutputStream obj = new ObjectOutputStream(f);
         obj.writeObject(lista);
-        obj.close();*/
+        obj.close();
+        /*
         
         try {
             ArrayList <Oferta> list = new ArrayList<>();
@@ -191,6 +247,7 @@ public Personaje personaje;
         }catch (IOException e) {
             System.out.println(e);
         }
+        */
     }
 
     public ArrayList<Oferta> getListaOfertas() {

@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author emmar
  */
 
-public class Personaje extends Operation{
+public class Personaje extends Operation implements java.io.Serializable{
     private String nick;
     private Usuario usuario;
     private String nombre;
@@ -24,7 +24,6 @@ public class Personaje extends Operation{
     private float oro;
     private int salud;
     private int edad;
-    private Modificador modificador = new Modificador();
     private File ficheroPersonajes= new File("FicherosMP/ficheroPersonajes.txt");
     private File ficheroOfertas= new File("FicherosMP/ficheroOfertas.txt");
     private String tipo;
@@ -159,5 +158,11 @@ public class Personaje extends Operation{
         //equipo.inicializarEquipo();
         //equipo.equipar();
      }
+
+    public String getNick() {
+        return nick;
+    }
+
+     
 
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author emmar
  */
-public class Demonio {
+public class Demonio implements java.io.Serializable{
     String pacto;
     ArrayList <Esbirro> esbirros_demonio = new ArrayList<>();
     

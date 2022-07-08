@@ -8,7 +8,7 @@ package practicextraordinaria;
  *
  * @author paula
  */
-class Licantropo {
+class Licantropo  implements java.io.Serializable{
     
     private int rabia;
 

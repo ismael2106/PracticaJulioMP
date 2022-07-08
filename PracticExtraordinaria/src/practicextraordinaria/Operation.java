@@ -9,7 +9,7 @@ package practicextraordinaria;
  *
  * @author emmar
  */
-public abstract class Operation {
+public abstract class Operation implements java.io.Serializable{
     public Usuario usuario;
     public Operador operador;
     

@@ -12,7 +12,7 @@ import java.util.HashSet;
  *
  * @author emmar
  */
-public class Esbirro {
+public class Esbirro implements java.io.Serializable{
     public String nombre;
     public int salud;
     enum tipo{

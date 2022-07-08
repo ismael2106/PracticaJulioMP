@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author paula
  */
-public class Arma {
+public class Arma implements java.io.Serializable{
     
     public String nombre;
     private int manos;

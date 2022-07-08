@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author emmar
  */
-class Equipo extends Operation {
+class Equipo extends Operation implements java.io.Serializable{
     Scanner lectura = new Scanner(System.in);
     
     ArrayList<Arma> listaArmas = new ArrayList<Arma>();
