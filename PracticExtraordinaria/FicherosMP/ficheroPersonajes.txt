@@ -48,3 +48,12 @@ emma --> lic
 emma --> hf
 emma --> cazd
 emma --> 0
+emma --> lala
+isma --> lolo
+emma --> alal
+isma --> lolo
+paula --> lele
+emma --> lala
+paula --> qw
+isma --> p
+luis --> we
