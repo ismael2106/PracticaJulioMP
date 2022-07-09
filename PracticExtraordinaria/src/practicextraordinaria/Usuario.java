@@ -32,6 +32,10 @@ public Personaje personaje;
 public ArrayList<Personaje> listaPersonajes = new ArrayList();
 public ListaDePersonajes clasePersonajes;
 
+
+
+
+
 //private String tipo;
 
 
@@ -205,6 +209,8 @@ public ListaDePersonajes clasePersonajes;
                 }
                 else if ("8".equals(c)){
                     comprarOferta();
+                    ListaDeOfertas lista = new ListaDeOfertas(listaOfertas);
+                    serializarOfertas("FicherosMP/ficheroOfertas.bin", lista);
                 }
                 else if ("9".equals(c)){
                     serializarPersonajes();
@@ -241,6 +247,7 @@ public ListaDePersonajes clasePersonajes;
                                     if(listaOfertas.get(i).getListaNombres().get(b).equals(listaPersonajes.get(k).getEquipo().listaArmas.get(a).getNombre())){
                                         personaje.getEquipo().listaArmas.add(listaPersonajes.get(k).getEquipo().listaArmas.get(a));
                                         listaPersonajes.get(k).getEquipo().listaArmas.remove(a);
+                                        listaPersonajes.get(k).setOro(listaPersonajes.get(k).getOro()+listaOfertas.get(i).getPrecio());
                                     }    
                                 }
 
@@ -253,6 +260,7 @@ public ListaDePersonajes clasePersonajes;
                                     if(listaOfertas.get(i).getListaNombres().get(b).equals(listaPersonajes.get(k).getEquipo().listaArmaduras.get(a).getNombre())){
                                         personaje.getEquipo().listaArmaduras.add(listaPersonajes.get(k).getEquipo().listaArmaduras.get(a));
                                         listaPersonajes.get(k).getEquipo().listaArmaduras.remove(a);
+                                        listaPersonajes.get(k).setOro(listaPersonajes.get(k).getOro()+listaOfertas.get(i).getPrecio());
                                     }    
                                 }
 
@@ -281,6 +289,7 @@ public ListaDePersonajes clasePersonajes;
             
             personaje.setOro(personaje.getOro()-listaOfertas.get(i).getPrecio());
             listaOfertas.remove(i);
+            //tiene q quedar constancia de cada oferta en otro fichero
         }
     }
     

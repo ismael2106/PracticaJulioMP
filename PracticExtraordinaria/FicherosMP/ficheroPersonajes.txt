@@ -94,3 +94,7 @@ emma --> pepe
 emma --> lala
 emma --> lala
 isma --> popo
+sergio --> pepe
+peter --> pepe
+emma --> pepe
+isma --> lele

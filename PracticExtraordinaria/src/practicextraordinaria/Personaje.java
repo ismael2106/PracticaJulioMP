@@ -28,6 +28,21 @@ public class Personaje extends Operation implements java.io.Serializable{
     private File ficheroOfertas= new File("FicherosMP/ficheroOfertas.txt");
     private String tipo;
     
+    public boolean tipoEsbirro;
+    public boolean tipoEquipo;
+    public boolean categoriaLegendario;
+    public boolean categoriaRaro;
+    public boolean categoriaEpico;
+    public boolean categoriaComun;
+    public boolean lealtadAlta;
+    public boolean lealtadMedia;
+    public boolean lealtadBaja;
+    public String tipoModAtaque;
+    public String tipoModDefensa;
+    public String tipoNombreUsuario;
+    public float precioMin;
+    public float precioMax;
+    
     
     
     
@@ -40,6 +55,85 @@ public class Personaje extends Operation implements java.io.Serializable{
         this.oro = (float)(Math. random()*10+1);
         int numEsbirros = (int)(Math. random()*2+1); //pone un numero aleatorio de esbirros
     }
+    
+    
+    public void suscribirse(){
+        Scanner lectura = new Scanner(System.in);
+        System.out.println("1-Esbirros");
+        System.out.println("2-Equipo");
+        System.out.println("3-Categoría legendaria");
+        System.out.println("4-Categoría epica");
+        System.out.println("5-Categoría rara");
+        System.out.println("6-Categoría común");
+        System.out.println("7-Lealtad alta");
+        System.out.println("8-Lealtad media");
+        System.out.println("9-Lealtad baja");
+        System.out.println("10-Valor ataque");
+        System.out.println("11-Valor defensa");
+        System.out.println("12-Nombre usuario");
+        System.out.println("13-Precio");
+        String op = lectura.next();
+        if("1".equals(op)){
+            tipoEsbirro = true;
+            
+        }
+        else if("2".equals(op)){
+            tipoEquipo = true;
+        }
+        else if("3".equals(op)){
+            categoriaLegendario = true;
+        }
+        else if("4".equals(op)){
+            categoriaEpico = true;
+        }
+        else if("5".equals(op)){
+            categoriaRaro = true;
+        }
+        else if("6".equals(op)){
+            categoriaComun = true;
+        }
+        else if("7".equals(op)){
+            lealtadAlta = true;
+        }
+        else if("8".equals(op)){
+            lealtadMedia = true;
+            
+        }
+        else if("9".equals(op)){
+            lealtadBaja = true;
+        }
+        else if("10".equals(op)){
+            System.out.println("Inserte el valor de ataque para el que desea suscribirse");
+            String ataque = lectura.next();
+            
+            tipoModAtaque = ataque;
+        }
+        else if("11".equals(op)){
+            System.out.println("Inserte el valor de defensa para el que desea suscribirse");
+            String defensa = lectura.next();
+            
+            tipoModDefensa = defensa;
+        }
+        else if("12".equals(op)){
+            System.out.println("Inserte el nombre de usuario para el que desea suscribirse");
+            String nombreUsuario = lectura.next();
+            
+            tipoModDefensa = nombreUsuario;
+            
+        }
+        else if("13".equals(op)){
+            System.out.println("Inserte el precio minimo para el que desea suscribirse: ");
+            String precio = lectura.next();
+            precioMin = Float.valueOf(precio);
+             System.out.println("Inserte el precio maximo para el que desea suscribirse: ");
+            String precio2 = lectura.next();
+            precioMax = Float.valueOf(precio2);
+            
+        }
+        
+    }
+    
+    
     
     public void registrarPersonaje() throws IOException, InterruptedException {
         Scanner lectura = new Scanner(System.in);
