@@ -24,8 +24,10 @@ public class Oferta implements java.io.Serializable{
     };
     private ArrayList<String> categ = new ArrayList<>();
     private ArrayList<String> leal= new ArrayList<>();
-    private ArrayList<Integer> valorAtaque = new ArrayList<>();
-    private ArrayList<Integer> valorDefensa = new ArrayList<>();
+    private ArrayList<String> valorAtaque = new ArrayList<>();
+    private ArrayList<String> valorDefensa = new ArrayList<>();
+    private ArrayList<String> listaElementos = new ArrayList<>();
+    
     private String tipoUsuario;
     private float precio;
     
@@ -34,18 +36,19 @@ public class Oferta implements java.io.Serializable{
     }
     
     public Oferta crearOfertaArma(Arma arma){
+        listaElementos.add("arma");
         listaNombres.add(arma.getNombre());
         this.tipoEquipo= true;  
-        if ("legendario".equals(arma.getCat())){
+        if ("legendario".equals(arma.getCat().name())){
             categ.add("legendario");
             }
-        else if ("comun".equals(arma.getCat())){
+        else if ("comun".equals(arma.getCat().name())){
             categ.add("comun");
             }
-        else if ("raro".equals(arma.getCat())){
+        else if ("raro".equals(arma.getCat().name())){
             categ.add("raro");
             }
-        else if ("epico".equals(arma.getCat())){
+        else if ("epico".equals(arma.getCat().name())){
             categ.add("epico");
             }
         valorAtaque.add(arma.getModAtaque());
@@ -57,18 +60,19 @@ public class Oferta implements java.io.Serializable{
     }
     
     public Oferta crearOfertaArmadura(Armadura armadura){
+        listaElementos.add("armadura");
         listaNombres.add(armadura.getNombre());
         this.tipoEquipo= true;  
-        if ("legendario".equals(armadura.getCat())){
+        if ("legendario".equals(armadura.getCat().name())){
             categ.add("legendario");
             }
-        if ("comun".equals(armadura.getCat())){
+        if ("comun".equals(armadura.getCat().name())){
             categ.add("comun");
             }
-        if ("raro".equals(armadura.getCat())){
+        if ("raro".equals(armadura.getCat().name())){
             categ.add("raro");
             }
-        if ("epico".equals(armadura.getCat())){
+        if ("epico".equals(armadura.getCat().name())){
             categ.add("epico");
             }
         
@@ -78,22 +82,25 @@ public class Oferta implements java.io.Serializable{
         return this;
     }
     public void crearOfertaEsbirro(Esbirro esbirro){
+        listaElementos.add("esbirro");
         listaNombres.add(esbirro.getNombre());
         this.tipoEsbirro= true;  
         categ.add("nulo");
-        valorAtaque.add(0);
-        valorDefensa.add(0);
-        if("humano".equals(esbirro.getTipoEsbirro())){
-            if("ALTA".equals(esbirro.getHumano().loyalty)){
-                leal.add("ALTA");
+        valorAtaque.add("No tiene ya que es un esbirro");
+        valorDefensa.add("No tiene ya que es un esbirro");
+        if("humano".equals(esbirro.getTipoEsbirro().name())){
+            if("alta".equals(esbirro.getHumano().loyalty.name())){
+                leal.add("alta");
             }
-            if("NORMAL".equals(esbirro.getHumano().loyalty)){
-                leal.add("NORMAL");
+            if("media".equals(esbirro.getHumano().loyalty.name())){
+                leal.add("media");
             }
-            if("BAJA".equals(esbirro.getHumano().loyalty)){
-                leal.add("BAJA");
+            if("baja".equals(esbirro.getHumano().loyalty.name())){
+                leal.add("baja");
             }
             
+        }else{
+            leal.add("nulo");
         }
         
         
@@ -127,11 +134,11 @@ public class Oferta implements java.io.Serializable{
         return leal;
     }
 
-    public ArrayList<Integer> getValorAtaque() {
+    public ArrayList<String> getValorAtaque() {
         return valorAtaque;
     }
 
-    public ArrayList<Integer> getValorDefensa() {
+    public ArrayList<String> getValorDefensa() {
         return valorDefensa;
     }
 
@@ -141,6 +148,10 @@ public class Oferta implements java.io.Serializable{
 
     public float getPrecio() {
         return precio;
+    }
+
+    public ArrayList<String> getListaElementos() {
+        return listaElementos;
     }
     
     

@@ -89,3 +89,8 @@ emma --> pepe
 emma --> juan
 emma --> juan
 emma --> pepe
+emma --> pepe
+emma --> pepe
+emma --> lala
+emma --> lala
+isma --> popo

@@ -38,7 +38,7 @@ public class Operador implements java.io.Serializable{
             System.out.println("2) BANEAR USUARIO");
             System.out.println("3) DESBANEAR USUARIO");
             System.out.println("4) CONSULTAR VENTAS");
-            System.out.println("5) VOLVER");
+            System.out.println("5) SALIR");
 
             String c = lectura.next();
 

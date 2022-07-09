@@ -131,7 +131,6 @@ class Equipo extends Operation implements java.io.Serializable{
             borrarEquipo();
         }
         else if ("3".equals(c)){
-            usuario.mostrarMenu();
         }   
    
     }
@@ -141,7 +140,7 @@ class Equipo extends Operation implements java.io.Serializable{
         System.out.println("1) Añadir esbirro");
         System.out.println("2) Borrar esbirro");
         
-        System.out.println("5) Volver");
+        System.out.println("3) Volver");
         
         String c = lectura.next();
         
@@ -152,41 +151,12 @@ class Equipo extends Operation implements java.io.Serializable{
             borrarEsbirro();
         }
         else if ("3".equals(c)){
-            usuario.mostrarMenu();
         }   
     }
     
-    public Oferta ofertarArma(Oferta oferta) throws IOException{
-        Scanner lectura = new Scanner(System.in);
-        System.out.println("¿Que arma desea ofertar?");
-        int i = lectura.nextInt();
-        
-        oferta = oferta.crearOfertaArma(listaArmas.get(i-1));
-        //usuario.getListaOfertas().add(oferta); 
-        //creo que aqui no se añade la oferta, se añade al finalizar la oferta
-        return oferta;
-    }
     
-    public Oferta ofertarArmadura(Oferta oferta) throws IOException{
-        Scanner lectura = new Scanner(System.in);
-        System.out.println("¿Que armadura desea ofertar?");
-        int i = lectura.nextInt();
-        
-        oferta.crearOfertaArmadura(listaArmaduras.get(i-1));
-        //usuario.getListaOfertas().add(oferta);
-        //creo que aqui no se añade la oferta, se añade al finalizar la oferta
-        return oferta;        
-    }
     
-    public void ofertarEsbirro(Oferta oferta) throws IOException{
-        Scanner lectura = new Scanner(System.in);
-        System.out.println("¿Que esbirro desea ofertar?");
-        int i = lectura.nextInt();
-        
-        oferta.crearOfertaEsbirro(listaEsbirros.get(i-1));
-        //usuario.getListaOfertas().add(oferta); 
-        //creo que aqui no se añade la oferta, se añade al finalizar la oferta
-    }
+    
     
     public void añadirEquipo(){
         Scanner lectura = new Scanner(System.in);
@@ -200,22 +170,17 @@ class Equipo extends Operation implements java.io.Serializable{
             System.out.println("Escribe el nombre del arma");
             String nombre = lectura.next();
             System.out.println("Escribe el número de manos del arma");
-            int manos = lectura.nextInt();
+            String manos = lectura.next();
             System.out.println("Escribe la categoría del arma");
             String categoria = lectura.next();
             System.out.println("Escribe el valor del modificador de ataque");
-            int modAtaque = lectura.nextInt();
+            String modAtaque = lectura.next();
             System.out.println("Escribe el valor del modificador de defensa");
-            int modDefensa = lectura.nextInt();
+            String modDefensa = lectura.next();
             lectura.nextLine();
             System.out.println("Escribe los materiales del arma");
             String materiales = lectura.nextLine();
-            Scanner sc = new Scanner(materiales);
-            /*ArrayList<String> listaMateriales = new ArrayList();
-            while (sc.hasNext()){
-                String material = sc.next();
-                listaMateriales.add(material);
-            }*/
+            
             
             Arma new_arma = new Arma(nombre, manos, categoria, materiales, modAtaque, modDefensa);
             listaArmas.add(new_arma);
@@ -226,19 +191,16 @@ class Equipo extends Operation implements java.io.Serializable{
             System.out.println("Escribe la categoría de la armadura");
             String categoria = lectura.next();
             System.out.println("Escribe el valor del modificador de ataque");
-            int modAtaque = lectura.nextInt();
+            String modAtaque = lectura.next();
             System.out.println("Escribe el valor del modificador de defensa");
-            int modDefensa = lectura.nextInt();
+            String modDefensa = lectura.next();
+            lectura.nextLine();
             System.out.println("Escribe los materiales la armadura");
             String materiales = lectura.nextLine();
-            Scanner sc = new Scanner(materiales);
-            //ArrayList<String> listaMateriales = new ArrayList();
-            while (sc.hasNext()){
-                String material = sc.next();
-                listaMateriales.add(material);
-            }
+           
             
-            Armadura new_armadura = new Armadura(nombre, categoria, listaMateriales, modAtaque, modDefensa);
+            
+            Armadura new_armadura = new Armadura(nombre, categoria, materiales, modAtaque, modDefensa);
             listaArmaduras.add(new_armadura);
         }
     }

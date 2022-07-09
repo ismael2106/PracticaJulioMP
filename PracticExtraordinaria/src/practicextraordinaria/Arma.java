@@ -16,18 +16,18 @@ import java.util.Scanner;
 public class Arma implements java.io.Serializable{
     
     public String nombre;
-    private int manos;
-    private int modDefensa; 
-    private int modAtaque; 
+    private String manos;
+    private String modDefensa; 
+    private String modAtaque; 
     
-    private enum categoria{
+    public enum categoria{
         legendario, comun, raro, epico;
     };
-    private categoria cat;
+    public categoria cat;
     
     private String listaMateriales;
     
-    public Arma(String nombre, int manos, String categ, String listaMateriales, int modDefensa, int modAtaque) {
+    public Arma(String nombre, String manos, String categ, String listaMateriales, String modAtaque, String modDefensa) {
         this.listaMateriales = listaMateriales;
         this.nombre = nombre;
         this.manos = manos;
@@ -52,11 +52,11 @@ public class Arma implements java.io.Serializable{
         return cat;
     }
 
-    public int getModDefensa() {
+    public String getModDefensa() {
         return modDefensa;
     }
 
-    public int getModAtaque() {
+    public String getModAtaque() {
         return modAtaque;
     }
     

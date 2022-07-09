@@ -11,16 +11,16 @@ import java.util.Scanner;
  */
 public class Armadura implements java.io.Serializable{
     public String nombre;
-    private ArrayList<String> listaMateriales;
-    private int modDefensa;
-    private int modAtaque; 
+    private String listaMateriales;
+    private String modDefensa;
+    private String modAtaque; 
     
-    private enum categoria{
+    public enum categoria{
         legendario, comun, raro, epico;
     };
-    private categoria cat;
+    public categoria cat;
     
-    public Armadura(String nombre, String categ, ArrayList<String> listaMateriales, int modAtaque, int modDefensa) {
+    public Armadura(String nombre, String categ, String listaMateriales, String modAtaque, String modDefensa) {
         this.nombre = nombre;
         this.listaMateriales = listaMateriales;
         this.modDefensa = modDefensa;
@@ -44,11 +44,11 @@ public class Armadura implements java.io.Serializable{
         return cat;
     }
 
-    public int getModDefensa() {
+    public String getModDefensa() {
         return modDefensa;
     }
 
-    public int getModAtaque() {
+    public String getModAtaque() {
         return modAtaque;
     }
     

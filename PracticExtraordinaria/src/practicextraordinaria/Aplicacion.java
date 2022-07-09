@@ -126,7 +126,7 @@ private Operador operador;
         ficheroEscogido = "FicherosMP/ficheroOperadores.txt";
         }
         else if ("3".equals(opcion)){
-        mostrarMenu();
+            mostrarMenu();
         }
         boolean encontrado = false;
         BufferedWriter bw;
@@ -164,7 +164,8 @@ private Operador operador;
             else if ("2".equals(opcion)){
             operador = new Operador(nick, contraseña);
             operador.mostrarMenu();
-            login();
+            salida = true;
+            
             
             }
         }
