@@ -211,6 +211,8 @@ public ListaDePersonajes clasePersonajes;
             }//end while menu
         } //end comprobarPersonajes
     }//end mostrarMenu()   
+    
+    
     public boolean isFileEmpty(File file) {
     return file.length() == 0;
     }
@@ -325,7 +327,7 @@ public ListaDePersonajes clasePersonajes;
                 for(int j = 0; j<listaOfertas.get(j).getListaNombres().size();j++){
                     System.out.println("-------------");
                     System.out.println("Nombre: "+listaOfertas.get(j).getListaNombres().get(j));
-                    System.out.println("Categoría: "+listaOfertas.get(j).getCateg().get(j));
+                    //System.out.println("Categoría: "+listaOfertas.get(j).getCateg().get(j));
                     System.out.println("Lealtad: "+listaOfertas.get(j).getLeal().get(j));
                     System.out.println("Valor ataque: "+listaOfertas.get(j).getValorAtaque().get(j));
                     System.out.println("Valor defensa: "+listaOfertas.get(j).getValorDefensa().get(j));

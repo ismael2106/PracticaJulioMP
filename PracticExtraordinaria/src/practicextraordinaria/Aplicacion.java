@@ -60,7 +60,7 @@ private Operador operador;
         Scanner lectura = new Scanner(System.in);
         System.out.println("1)Registrarse como usuario");
         System.out.println("2)Registrarse como operador");
-        System.out.println("3)Salir");
+        System.out.println("3)Volver");
         String opcion = lectura.next();
 
         if ("1".equals(opcion)){
@@ -70,7 +70,7 @@ private Operador operador;
             ficheroEscogido = "FicherosMP/ficheroOperadores.txt";
         }
         else if ("3".equals(opcion)){
-            salir();
+            mostrarMenu();
         }
         boolean encontrado = false;
         System.out.print("Inserte su nick: ");
@@ -116,7 +116,7 @@ private Operador operador;
         while(salida ==false){
         System.out.println("1)Iniciar sesión como usuario");
         System.out.println("2)Iniciar sesión como operador");
-        System.out.println("3)Salir");
+        System.out.println("3)Volver");
         String opcion = lectura.next();
 
         if ("1".equals(opcion)){
@@ -126,7 +126,7 @@ private Operador operador;
         ficheroEscogido = "FicherosMP/ficheroOperadores.txt";
         }
         else if ("3".equals(opcion)){
-        salir();
+        mostrarMenu();
         }
         boolean encontrado = false;
         BufferedWriter bw;
@@ -173,7 +173,7 @@ private Operador operador;
     }
 
     
-    public void darseBaja() throws FileNotFoundException, IOException{
+    public void darseBaja() throws FileNotFoundException, IOException, ClassNotFoundException, InterruptedException{
         Scanner lectura = new Scanner(System.in);
         boolean encontrado = false;
         BufferedWriter bw;
@@ -196,11 +196,17 @@ private Operador operador;
             if ((nick+" "+contraseña).equals(linea)){
                 encontrado = true;
             }
+            }
             if (encontrado == true){
                 bw.write(sc.nextLine());
+                System.out.println("Proceso realizado correctamente");
             }
-        }
+            else if (encontrado == false){
+                System.out.println("El usuario introducido no se encuentra registrado");
+                mostrarMenu();
+            }
         bw.close();
+        
     }
 
 

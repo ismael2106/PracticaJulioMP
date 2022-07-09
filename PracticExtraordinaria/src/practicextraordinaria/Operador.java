@@ -73,15 +73,12 @@ public class Operador implements java.io.Serializable{
                 System.out.println("Oferta "+i);
             }
         }
-        System.out.print("Escriba el numero de oferta que desea validar: ");
+        System.out.print("Escriba el numero de la oferta que desea validar: ");
         int sc = lectura.nextInt();
         
         listaOfertas.get(sc).setValidada(true);
         ListaDeOfertas lista = new ListaDeOfertas(listaOfertas);
         serializarOfertas(ficheroOfertas,lista);
-        
-        
-        
         
     }
     
