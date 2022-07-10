@@ -153,6 +153,14 @@ public class Oferta implements java.io.Serializable{
     public ArrayList<String> getListaElementos() {
         return listaElementos;
     }
+
+    public boolean isTipoEsbirro() {
+        return tipoEsbirro;
+    }
+
+    public boolean isTipoEquipo() {
+        return tipoEquipo;
+    }
     
     
 }

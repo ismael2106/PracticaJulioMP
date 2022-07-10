@@ -96,6 +96,10 @@ public ListaDePersonajes clasePersonajes;
             System.out.println("Personaje creado con éxito, vuelva a iniciar sesión");
         }
         else{
+            if(isFileEmpty(ficheroOfertas) == false){
+                 mostrarOfertasSuscritas();
+            }
+           
             boolean salida = false;
             while (salida == false){
                 System.out.println("1) DAR DE BAJA PERSONAJE");
@@ -125,7 +129,7 @@ public ListaDePersonajes clasePersonajes;
                     personaje.getEquipo().menuEsbirros();
                 }
                 else if ("5".equals(c)){
-                    //subscribirseOferta();
+                    personaje.suscribirse();
                 }
                 else if ("6".equals(c)){
                     oferta = new Oferta();
@@ -224,6 +228,49 @@ public ListaDePersonajes clasePersonajes;
     
     public boolean isFileEmpty(File file) {
     return file.length() == 0;
+    }
+    
+    public void mostrarOferta(Integer i){
+        System.out.print((i+1)+"-Oferta de "+listaOfertas.get(i).getTipoUsuario());
+                    System.out.println(" Precio: "+listaOfertas.get(i).getPrecio());
+                    for(int j = 0; j<listaOfertas.get(i).getListaNombres().size();j++){
+                        System.out.println("-------------");
+                        System.out.println("Tipo: "+listaOfertas.get(i).getListaElementos().get(j));
+                        System.out.println("Nombre: "+listaOfertas.get(i).getListaNombres().get(j));
+                        System.out.println("Categoría: "+listaOfertas.get(i).getCateg().get(j));
+                        System.out.println("Lealtad: "+listaOfertas.get(i).getLeal().get(j));
+                        System.out.println("Valor ataque: "+listaOfertas.get(i).getValorAtaque().get(j));
+                        System.out.println("Valor defensa: "+listaOfertas.get(i).getValorDefensa().get(j));
+                    }
+        
+    }
+    
+    public void mostrarOfertasSuscritas() throws IOException, FileNotFoundException, ClassNotFoundException{
+        deserializar(ficheroOfertas);
+        for(int i = 0; i<listaOfertas.size();i++){
+            if(listaOfertas.get(i).isValidada()){
+                for(int k = 0;k<listaOfertas.get(i).getValorAtaque().size();k++){
+                    if(((personaje.tipoEquipo == listaOfertas.get(i).isTipoEquipo()) && personaje.tipoEquipo == true) || ((personaje.tipoEsbirro == listaOfertas.get(i).isTipoEsbirro()) && personaje.tipoEsbirro == true)
+                       || (personaje.categoriaComun == true && "comun".equals(listaOfertas.get(i).getCateg().get(k)))
+                        || (personaje.categoriaRaro == true && "raro".equals(listaOfertas.get(i).getCateg().get(k)))
+                        || (personaje.categoriaEpico == true && "epico".equals(listaOfertas.get(i).getCateg().get(k)))
+                        || (personaje.categoriaLegendario == true && "legendario".equals(listaOfertas.get(i).getCateg().get(k)))
+                        || (personaje.lealtadAlta == true && "alta".equals(listaOfertas.get(i).getLeal().get(k)))
+                        || (personaje.lealtadMedia == true && "media".equals(listaOfertas.get(i).getLeal().get(k)))
+                        || (personaje.lealtadBaja == true && "baja".equals(listaOfertas.get(i).getLeal().get(k)))
+                        || (personaje.tipoModAtaque.equals(listaOfertas.get(i).getValorAtaque().get(k)))
+                        || (personaje.tipoModDefensa.equals(listaOfertas.get(i).getValorDefensa().get(k)))
+                        || (personaje.tipoNombreUsuario.equals(listaOfertas.get(i).getTipoUsuario()))
+                        || (personaje.precioMin<=listaOfertas.get(i).getPrecio() && personaje.precioMax>=listaOfertas.get(i).getPrecio())){
+                        mostrarOferta(i);    
+                    }
+
+                    
+                }
+                System.out.println("----------------------------------");
+            }
+        }
+        
     }
     
     
@@ -332,6 +379,8 @@ public ListaDePersonajes clasePersonajes;
             
             ListaDeOfertas lista = (ListaDeOfertas) objectStream.readObject();
             listaOfertas = lista.getListaOfertas();
+            
+            objectStream.close();
             
             //this.listaOfertas = (ArrayList<Oferta>) objectStream.readObject();      
     }

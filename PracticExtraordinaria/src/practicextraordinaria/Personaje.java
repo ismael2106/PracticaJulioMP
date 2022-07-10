@@ -79,46 +79,57 @@ public class Personaje extends Operation implements java.io.Serializable{
         }
         else if("2".equals(op)){
             tipoEquipo = true;
+            System.out.println("Te has suscrito a ofertas de tipo esbirro");
         }
         else if("3".equals(op)){
             categoriaLegendario = true;
+            System.out.println("Te has suscrito a ofertas de equipo legendario");
         }
         else if("4".equals(op)){
             categoriaEpico = true;
+            System.out.println("Te has suscrito a ofertas de equipo epico");
         }
         else if("5".equals(op)){
             categoriaRaro = true;
+            System.out.println("Te has suscrito a ofertas de equipo raro");
         }
         else if("6".equals(op)){
             categoriaComun = true;
+            System.out.println("Te has suscrito a ofertas de categoria comun");
         }
         else if("7".equals(op)){
             lealtadAlta = true;
+            System.out.println("Te has suscrito a ofertas de esbirros con lealtad alta");
         }
         else if("8".equals(op)){
             lealtadMedia = true;
+            System.out.println("Te has suscrito a ofertas de esbirros con lealtad media");
             
         }
         else if("9".equals(op)){
             lealtadBaja = true;
+            System.out.println("Te has suscrito a ofertas de esbirros con lealtad baja esbirro");
         }
         else if("10".equals(op)){
             System.out.println("Inserte el valor de ataque para el que desea suscribirse");
             String ataque = lectura.next();
             
             tipoModAtaque = ataque;
+            System.out.println("Te has suscrito a ofertas con un equipo con valor de ataque "+tipoModAtaque);
         }
         else if("11".equals(op)){
             System.out.println("Inserte el valor de defensa para el que desea suscribirse");
             String defensa = lectura.next();
             
             tipoModDefensa = defensa;
+            System.out.println("Te has suscrito a ofertas con un equipo con valor de defensa "+tipoModDefensa);
         }
         else if("12".equals(op)){
             System.out.println("Inserte el nombre de usuario para el que desea suscribirse");
             String nombreUsuario = lectura.next();
             
-            tipoModDefensa = nombreUsuario;
+            tipoNombreUsuario = nombreUsuario;
+            System.out.println("Te has suscrito a ofertas publicadas por "+tipoNombreUsuario);
             
         }
         else if("13".equals(op)){
@@ -128,6 +139,7 @@ public class Personaje extends Operation implements java.io.Serializable{
              System.out.println("Inserte el precio maximo para el que desea suscribirse: ");
             String precio2 = lectura.next();
             precioMax = Float.valueOf(precio2);
+            System.out.println("Te has suscrito a ofertas que su coste este entre "+precioMin+" y "+precioMax);
             
         }
         
@@ -136,6 +148,20 @@ public class Personaje extends Operation implements java.io.Serializable{
     
     
     public void registrarPersonaje() throws IOException, InterruptedException {
+        setTipoEsbirro(false);
+        setTipoEquipo(false);
+        setCategoriaLegendario(false);
+        setCategoriaRaro(false);
+        setCategoriaEpico(false);
+        setCategoriaComun(false);
+        setLealtadAlta(false);
+        setLealtadMedia(false);
+        setLealtadBaja(false);
+        setTipoModAtaque("");
+        setTipoModDefensa("");
+        setTipoNombreUsuario("");
+        setPrecioMin(1);
+        setPrecioMax(0);
         Scanner lectura = new Scanner(System.in);
         getTipo();
         System.out.print("Escriba el nombre que desea para su personaje: ");
@@ -257,6 +283,114 @@ public class Personaje extends Operation implements java.io.Serializable{
 
     public String getNick() {
         return nick;
+    }
+
+    public boolean isTipoEsbirro() {
+        return tipoEsbirro;
+    }
+
+    public boolean isTipoEquipo() {
+        return tipoEquipo;
+    }
+
+    public boolean isCategoriaLegendario() {
+        return categoriaLegendario;
+    }
+
+    public boolean isCategoriaEpico() {
+        return categoriaEpico;
+    }
+
+    public boolean isCategoriaComun() {
+        return categoriaComun;
+    }
+
+    public boolean isLealtadAlta() {
+        return lealtadAlta;
+    }
+
+    public boolean isLealtadMedia() {
+        return lealtadMedia;
+    }
+
+    public boolean isLealtadBaja() {
+        return lealtadBaja;
+    }
+
+    public String getTipoModAtaque() {
+        return tipoModAtaque;
+    }
+
+    public String getTipoModDefensa() {
+        return tipoModDefensa;
+    }
+
+    public String getTipoNombreUsuario() {
+        return tipoNombreUsuario;
+    }
+
+    public float getPrecioMin() {
+        return precioMin;
+    }
+
+    public float getPrecioMax() {
+        return precioMax;
+    }
+
+    public void setTipoEsbirro(boolean tipoEsbirro) {
+        this.tipoEsbirro = tipoEsbirro;
+    }
+
+    public void setTipoEquipo(boolean tipoEquipo) {
+        this.tipoEquipo = tipoEquipo;
+    }
+
+    public void setCategoriaLegendario(boolean categoriaLegendario) {
+        this.categoriaLegendario = categoriaLegendario;
+    }
+
+    public void setCategoriaRaro(boolean categoriaRaro) {
+        this.categoriaRaro = categoriaRaro;
+    }
+
+    public void setCategoriaEpico(boolean categoriaEpico) {
+        this.categoriaEpico = categoriaEpico;
+    }
+
+    public void setCategoriaComun(boolean categoriaComun) {
+        this.categoriaComun = categoriaComun;
+    }
+
+    public void setLealtadAlta(boolean lealtadAlta) {
+        this.lealtadAlta = lealtadAlta;
+    }
+
+    public void setLealtadMedia(boolean lealtadMedia) {
+        this.lealtadMedia = lealtadMedia;
+    }
+
+    public void setLealtadBaja(boolean lealtadBaja) {
+        this.lealtadBaja = lealtadBaja;
+    }
+
+    public void setTipoModAtaque(String tipoModAtaque) {
+        this.tipoModAtaque = tipoModAtaque;
+    }
+
+    public void setTipoModDefensa(String tipoModDefensa) {
+        this.tipoModDefensa = tipoModDefensa;
+    }
+
+    public void setTipoNombreUsuario(String tipoNombreUsuario) {
+        this.tipoNombreUsuario = tipoNombreUsuario;
+    }
+
+    public void setPrecioMin(float precioMin) {
+        this.precioMin = precioMin;
+    }
+
+    public void setPrecioMax(float precioMax) {
+        this.precioMax = precioMax;
     }
 
      
