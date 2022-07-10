@@ -226,7 +226,7 @@ class Equipo extends Operation implements java.io.Serializable{
         Scanner lectura = new Scanner(System.in);
         System.out.println("Escribe el nombre del nuevo esbirro");
         String nombre = lectura.next();
-        System.out.println("Escribe el tipo del esbirro");
+        System.out.println("Escribe el tipo del esbirro (humano, demonio, ghoul)");
         String tipo = lectura.next();
         
         if("humano".equals(tipo)){

@@ -172,19 +172,6 @@ public ListaDePersonajes clasePersonajes;
                     }
                     else if ("3".equals(opt)){
 
-                        if (cont>=1){
-                        /*
-                        listaOfertas.add(oferta);
-                        System.out.println("Quiere ofertar:");
-                        cont=listaOfertas.size()-cont;
-                        for (int i = cont; i < listaOfertas.size(); i++){
-                            System.out.println(listaOfertas.get(i).getNombre());
-                        }
-                        */
-                        System.out.println("¿Es correcto?");
-                        System.out.println("1)Sí");
-                        System.out.println("2)Cancelar oferta");
-
                         String e = lectura.next();
                         if ("1".equals(e)){
                             System.out.println("Inserte el precio de su oferta");
@@ -204,7 +191,7 @@ public ListaDePersonajes clasePersonajes;
                         if ("2".equals(e)){
                             sal = true;
                         }
-                        }
+                        
                     }
                     }//end while ofertar
                 } //end op 6
