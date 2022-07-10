@@ -171,7 +171,7 @@ class Equipo extends Operation implements java.io.Serializable{
             String nombre = lectura.next();
             System.out.println("Escribe el número de manos del arma");
             String manos = lectura.next();
-            System.out.println("Escribe la categoría del arma");
+            System.out.println("Escribe la categoría del arma (comun, raro, epico, legendario)");
             String categoria = lectura.next();
             System.out.println("Escribe el valor del modificador de ataque");
             String modAtaque = lectura.next();
