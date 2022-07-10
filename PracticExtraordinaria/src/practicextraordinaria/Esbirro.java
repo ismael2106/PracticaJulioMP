@@ -36,11 +36,11 @@ public class Esbirro implements java.io.Serializable{
         }
         if ("ghoul".equals(t)){
             tipoEsbirro = tipo.ghoul;
-            Ghoul ghoul = new Ghoul(cosa);
+            ghoul = new Ghoul(cosa);
         }
         if ("demonio".equals(t)){
             tipoEsbirro = tipo.demonio;
-            Demonio demonio = new Demonio(cosa);
+            demonio = new Demonio(cosa);
         }
         
         

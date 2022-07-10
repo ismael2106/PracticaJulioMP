@@ -155,9 +155,6 @@ class Equipo extends Operation implements java.io.Serializable{
     }
     
     
-    
-    
-    
     public void añadirEquipo(){
         Scanner lectura = new Scanner(System.in);
         System.out.println("¿Qué quieres añadir?");
@@ -249,7 +246,7 @@ class Equipo extends Operation implements java.io.Serializable{
             System.out.println("Escribe el pacto entre el demonio y su amo");
             String pacto = lectura.next();
             Esbirro esbirro = new Esbirro(nombre, tipo, pacto);
-            listaEsbirros.add(esbirro); 
+            
             
             while (salir == false){
                 System.out.println("Quieres añadir esbirros a " + nombre + "? (1-si o 2-no)");
@@ -261,13 +258,13 @@ class Equipo extends Operation implements java.io.Serializable{
                     String tipo2 = lectura.next();
                     Esbirro esb = new Esbirro(nombre2, tipo2, pacto);
                     esbirro.getDemonio().getConjuntoEsbirros().add(esb);
-                    salir = true;
+                   
                 }
                 else if("2".equals(a)){
                     salir = true;
                 }
-                
             }
+            listaEsbirros.add(esbirro); 
         }
     }
     
