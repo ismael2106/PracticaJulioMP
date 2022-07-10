@@ -1,0 +1,208 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:44), pid=13036, tid=20888
+#
+# JRE version:  (17.0.1+12) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (17.0.1+12-LTS-39, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dapplication.home=C:\Program Files\Java\jdk-17.0.1 --add-modules=ALL-DEFAULT -Xms8m -Djdk.module.main=jdk.compiler jdk.compiler/com.sun.tools.javac.Main -d C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\classes -classpath C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\classes -sourcepath C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\empty -target 16 -encoding UTF-8 -g -processorpath C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\empty -s C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\generated-sources\ap-source-output -source 16 C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\src\practicextraordinaria\Equipo.java C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\src\practicextraordinaria\Humano.java
+
+Host: Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz, 4 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1741)
+Time: Sun Jul 10 21:30:37 2022 Hora de verano romance elapsed time: 0.025672 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000274bc99f870):  JavaThread "Unknown thread" [_thread_in_vm, id=20888, stack(0x0000008feb500000,0x0000008feb600000)]
+
+Stack: [0x0000008feb500000,0x0000008feb600000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x66fa1a]
+V  [jvm.dll+0x7ce5a4]
+V  [jvm.dll+0x7cfd4e]
+V  [jvm.dll+0x7d03b3]
+V  [jvm.dll+0x242b05]
+V  [jvm.dll+0xa4673]
+V  [jvm.dll+0x2e0b47]
+V  [jvm.dll+0x2d8a1b]
+V  [jvm.dll+0x7a01e1]
+V  [jvm.dll+0x365791]
+V  [jvm.dll+0x77f6cc]
+V  [jvm.dll+0x3e812f]
+V  [jvm.dll+0x3e9bd1]
+C  [jli.dll+0x527b]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17034]
+C  [ntdll.dll+0x52651]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007fff67ac7818, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x00000274bc9dcd80 GCTaskThread "GC Thread#0" [stack: 0x0000008feb600000,0x0000008feb700000] [id=12984]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007fff67315a90]
+
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00000274bc99b480] Heap_lock - owner thread: 0x00000274bc99f870
+
+Heap address: 0x0000000081400000, size: 2028 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 0.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+<Empty>
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000000081400000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007fff676f8d89]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (1 events):
+Event: 0.018 Loaded shared library C:\Program Files\Java\jdk-17.0.1\bin\java.dll
+
+
+Dynamic libraries:
+0x00007ff723d60000 - 0x00007ff723d68000 	C:\Program Files\Java\jdk-17.0.1\bin\javac.exe
+0x00007fffb0710000 - 0x00007fffb0907000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007fffae930000 - 0x00007fffae9ed000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007fffae050000 - 0x00007fffae31d000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007fffae320000 - 0x00007fffae420000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007fff89d80000 - 0x00007fff89d9a000 	C:\Program Files\Java\jdk-17.0.1\bin\VCRUNTIME140.dll
+0x00007fffa9860000 - 0x00007fffa9878000 	C:\Program Files\Java\jdk-17.0.1\bin\jli.dll
+0x00007fffb00e0000 - 0x00007fffb018e000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007fffaed10000 - 0x00007fffaedae000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007fffaf810000 - 0x00007fffaf8ac000 	C:\WINDOWS\System32\sechost.dll
+0x00007fffaea00000 - 0x00007fffaeb25000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007fffaf600000 - 0x00007fffaf7a0000 	C:\WINDOWS\System32\USER32.dll
+0x00007fffae020000 - 0x00007fffae042000 	C:\WINDOWS\System32\win32u.dll
+0x00007fffae8a0000 - 0x00007fffae8ca000 	C:\WINDOWS\System32\GDI32.dll
+0x00007fffade60000 - 0x00007fffadf6b000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007fffae6d0000 - 0x00007fffae76d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007fff96180000 - 0x00007fff9641a000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\COMCTL32.dll
+0x00007fff98cf0000 - 0x00007fff98cfa000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007fffaeb30000 - 0x00007fffaeb60000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007fff9acd0000 - 0x00007fff9acdc000 	C:\Program Files\Java\jdk-17.0.1\bin\vcruntime140_1.dll
+0x00007fff7ee50000 - 0x00007fff7eedd000 	C:\Program Files\Java\jdk-17.0.1\bin\msvcp140.dll
+0x00007fff67030000 - 0x00007fff67bee000 	C:\Program Files\Java\jdk-17.0.1\bin\server\jvm.dll
+0x00007fffb0660000 - 0x00007fffb0668000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007fff984b0000 - 0x00007fff984b9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007fffaf9f0000 - 0x00007fffafa5b000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007fff98600000 - 0x00007fff98627000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007fffabd10000 - 0x00007fffabd22000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007fff98260000 - 0x00007fff9826a000 	C:\Program Files\Java\jdk-17.0.1\bin\jimage.dll
+0x00007fff9dd20000 - 0x00007fff9df04000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007fff9b710000 - 0x00007fff9b73c000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007fffae4e0000 - 0x00007fffae562000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007fff86230000 - 0x00007fff86255000 	C:\Program Files\Java\jdk-17.0.1\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Java\jdk-17.0.1\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e;C:\Program Files\Java\jdk-17.0.1\bin\server
+
+VM Arguments:
+jvm_args: -Dapplication.home=C:\Program Files\Java\jdk-17.0.1 --add-modules=ALL-DEFAULT -Xms8m -Djdk.module.main=jdk.compiler 
+java_command: jdk.compiler/com.sun.tools.javac.Main -d C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\classes -classpath C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\classes -sourcepath C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\empty -target 16 -encoding UTF-8 -g -processorpath C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\empty -s C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\build\generated-sources\ap-source-output -source 16 C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\src\practicextraordinaria\Equipo.java C:\Users\paula\OneDrive\Escritorio\OneDrive - Universidad Rey Juan Carlos\UNI\SEGUNDO\2ºCUATRI\MP\PRACTICA\New Folder\PracticaJulioMP\PracticExtraordinaria\src\practicextraordinaria\Humano.java
+java_class_path (initial): <not set>
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 3                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 8388608                                   {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 2126512128                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {command line}
+    uintx NonNMethodCodeHeapSize                   = 5832780                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122912730                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122912730                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 2126512128                             {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                           {product lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-16.0.2
+PATH=C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Java\jdk-16.0.2\bin;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\paula\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\paula\AppData\Local\Programs\Python\Python310\;C:\Users\paula\AppData\Local\Microsoft\WindowsApps;C:\Users\paula\.dotnet\tools;C:\Program Files\JetBrains\PyCharm 2021.3.2\bin;;C:\WINDOWS\system32;"c:\windows;c:\windows\system32;c:\windows\system32\wbem";
+USERNAME=paula
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 10 , 64 bit Build 19041 (10.0.19041.1741)
+OS uptime: 9 days 13:01 hours
+
+CPU: total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 142 stepping 9 microcode 0xec, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, rtm, adx, fma, vzeroupper, clflush, clflushopt
+
+Memory: 4k page, system-wide physical 8109M (1289M free)
+TotalPageFile size 12218M (AvailPageFile size 5M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 48M, peak: 49M
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (17.0.1+12-LTS-39) for windows-amd64 JRE (17.0.1+12-LTS-39), built on Sep 27 2021 18:41:35 by "mach5one" with MS VC++ 16.8 (VS2019)
+
+END.

@@ -233,11 +233,23 @@ class Equipo extends Operation implements java.io.Serializable{
         String tipo = lectura.next();
         
         if("humano".equals(tipo)){
-            boolean salir = false;
             System.out.println("Escribe la lealtad del humano (alta, media, baja)");
             String lealtad = lectura.next();
             Esbirro esbirro = new Esbirro(nombre, tipo, lealtad);
             listaEsbirros.add(esbirro);
+        }
+        else if("ghoul".equals(tipo)){
+            System.out.println("Escribe la dependencia del ghoul (1-5)");
+            String dependencia = lectura.next();
+            Esbirro esbirro = new Esbirro(nombre, tipo, dependencia);
+            listaEsbirros.add(esbirro);
+        }
+        else if("demonio".equals(tipo)){
+            boolean salir = false;
+            System.out.println("Escribe el pacto entre el demonio y su amo");
+            String pacto = lectura.next();
+            Esbirro esbirro = new Esbirro(nombre, tipo, pacto);
+            listaEsbirros.add(esbirro); 
             
             while (salir == false){
                 System.out.println("Quieres añadir esbirros a " + nombre + "? (1-si o 2-no)");
@@ -247,28 +259,15 @@ class Equipo extends Operation implements java.io.Serializable{
                     String nombre2 = lectura.next();
                     System.out.println("Escribe el tipo del esbirro");
                     String tipo2 = lectura.next();
-                    Esbirro esb = new Esbirro(nombre2, tipo2, lealtad);
-                    esbirro.getHumano().getConjuntoEsbirros().add(esb);
+                    Esbirro esb = new Esbirro(nombre2, tipo2, pacto);
+                    esbirro.getDemonio().getConjuntoEsbirros().add(esb);
+                    salir = true;
                 }
                 else if("2".equals(a)){
                     salir = true;
                 }
                 
             }
-            
-            
-        }
-        else if("ghoul".equals(tipo)){
-            System.out.println("Escribe la dependencia del ghoul (1-5)");
-            String dependencia = lectura.next();
-            Esbirro esbirro = new Esbirro(nombre, tipo, dependencia);
-            listaEsbirros.add(esbirro);
-        }
-        else if("demonio".equals(tipo)){
-            System.out.println("Escribe el pacto entre el demonio y su amo");
-            String pacto = lectura.next();
-            Esbirro esbirro = new Esbirro(nombre, tipo, pacto);
-            listaEsbirros.add(esbirro);
         }
     }
     
