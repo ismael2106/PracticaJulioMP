@@ -94,6 +94,7 @@ public ListaDePersonajes clasePersonajes;
             listaPersonajes.add(personaje);
             serializarPersonajes();
             System.out.println("Personaje creado con éxito, vuelva a iniciar sesión");
+            
         }
         else{
             if(isFileEmpty(ficheroOfertas) == false){
@@ -276,69 +277,106 @@ public ListaDePersonajes clasePersonajes;
     
     public void comprarOferta() throws IOException, FileNotFoundException, ClassNotFoundException{
         Scanner lectura = new Scanner(System.in);
-        consultarOfertas();
-        System.out.println("Escriba el numero de la oferta que desea comprar: ");
-        int i = lectura.nextInt();
-        i--;//asi tenemos la posicion que ocupa la oferta en la lista de ofertas 
-        if(personaje.getOro()<listaOfertas.get(i).getPrecio()){
-            System.out.println("No tienes suficiente oro");
-            
+        if (listaOfertas.isEmpty()){
+            System.out.println("No hay ofertas publicadas");
         }
         else{
-            for(int k = 0;k<listaPersonajes.size();k++){ 
-                if (listaPersonajes.get(k).getNick().equals(listaOfertas.get(i).getTipoUsuario())){ //buscamos el personaje que hace la oferta                
-                    for(int z = 0;z<listaOfertas.get(i).getListaElementos().size();z++){
-                        if("arma".equals(listaOfertas.get(i).getListaElementos().get(z))){//comprobamos de que tipo es cada elemento de la oferta
-                            for (int a=0;a< listaPersonajes.get(k).getEquipo().listaArmas.size();a++){
-                                for(int b=0;b<listaOfertas.get(i).getListaNombres().size();b++){
-                                    if(listaOfertas.get(i).getListaNombres().get(b).equals(listaPersonajes.get(k).getEquipo().listaArmas.get(a).getNombre())){
-                                        personaje.getEquipo().listaArmas.add(listaPersonajes.get(k).getEquipo().listaArmas.get(a));
-                                        listaPersonajes.get(k).getEquipo().listaArmas.remove(a);
-                                        listaPersonajes.get(k).setOro(listaPersonajes.get(k).getOro()+listaOfertas.get(i).getPrecio());
-                                    }    
+            consultarOfertas();
+            System.out.println("Escriba el numero de la oferta que desea comprar: ");
+            int i = lectura.nextInt();
+            i--;//asi tenemos la posicion que ocupa la oferta en la lista de ofertas 
+            if(personaje.getOro()<listaOfertas.get(i).getPrecio()){
+                System.out.println("No tienes suficiente oro");
+
+            }
+            else{
+                for(int k = 0;k<listaPersonajes.size();k++){ 
+                    if (listaPersonajes.get(k).getNick().equals(listaOfertas.get(i).getTipoUsuario())){ //buscamos el personaje que hace la oferta                
+                        for(int z = 0;z<listaOfertas.get(i).getListaElementos().size();z++){
+                            if("arma".equals(listaOfertas.get(i).getListaElementos().get(z))){//comprobamos de que tipo es cada elemento de la oferta
+                                for (int a=0;a< listaPersonajes.get(k).getEquipo().listaArmas.size();a++){
+                                    for(int b=0;b<listaOfertas.get(i).getListaNombres().size();b++){
+                                        if(listaOfertas.get(i).getListaNombres().get(b).equals(listaPersonajes.get(k).getEquipo().listaArmas.get(a).getNombre())){
+                                            personaje.getEquipo().listaArmas.add(listaPersonajes.get(k).getEquipo().listaArmas.get(a));
+                                            listaPersonajes.get(k).getEquipo().listaArmas.remove(a);
+                                            listaPersonajes.get(k).setOro(listaPersonajes.get(k).getOro()+listaOfertas.get(i).getPrecio());
+
+
+                                        }    
+                                    }
+
                                 }
+                            }
+                            if("armadura".equals(listaOfertas.get(i).getListaElementos().get(z))){//comprobamos de que tipo es cada elemento de la oferta
+                                for (int a=0;a< listaPersonajes.get(k).getEquipo().listaArmaduras.size();a++){
+                                    for(int b=0;b<listaOfertas.get(i).getListaNombres().size();b++){
+                                        if(listaOfertas.get(i).getListaNombres().get(b).equals(listaPersonajes.get(k).getEquipo().listaArmaduras.get(a).getNombre())){
+                                            personaje.getEquipo().listaArmaduras.add(listaPersonajes.get(k).getEquipo().listaArmaduras.get(a));
+                                            listaPersonajes.get(k).getEquipo().listaArmaduras.remove(a);
+                                            listaPersonajes.get(k).setOro(listaPersonajes.get(k).getOro()+listaOfertas.get(i).getPrecio());   
+                                        }    
+                                    }
 
 
+                                }
+                            }
+                            if("esbirro".equals(listaOfertas.get(i).getListaElementos().get(z))){//comprobamos de que tipo es cada elemento de la oferta
+                                for (int a=0;a< listaPersonajes.get(k).getEquipo().listaEsbirros.size();a++){
+                                    for(int b=0;b<listaOfertas.get(i).getListaNombres().size();b++){
+                                        if(listaOfertas.get(i).getListaNombres().get(b).equals(listaPersonajes.get(k).getEquipo().listaEsbirros.get(a).getNombre())){
+
+                                            personaje.getEquipo().listaEsbirros.add(listaPersonajes.get(k).getEquipo().listaEsbirros.get(a));
+                                            listaPersonajes.get(k).getEquipo().listaEsbirros.remove(a);
+                                            listaPersonajes.get(k).setOro(listaPersonajes.get(k).getOro()+listaOfertas.get(i).getPrecio());
+                                        }    
+                                    }
+
+
+                                }
                             }
                         }
-                        if("armadura".equals(listaOfertas.get(i).getListaElementos().get(z))){//comprobamos de que tipo es cada elemento de la oferta
-                            for (int a=0;a< listaPersonajes.get(k).getEquipo().listaArmaduras.size();a++){
-                                for(int b=0;b<listaOfertas.get(i).getListaNombres().size();b++){
-                                    if(listaOfertas.get(i).getListaNombres().get(b).equals(listaPersonajes.get(k).getEquipo().listaArmaduras.get(a).getNombre())){
-                                        personaje.getEquipo().listaArmaduras.add(listaPersonajes.get(k).getEquipo().listaArmaduras.get(a));
-                                        listaPersonajes.get(k).getEquipo().listaArmaduras.remove(a);
-                                        listaPersonajes.get(k).setOro(listaPersonajes.get(k).getOro()+listaOfertas.get(i).getPrecio());
-                                    }    
-                                }
 
-
-                            }
-                        }
-                        if("esbirro".equals(listaOfertas.get(i).getListaElementos().get(z))){//comprobamos de que tipo es cada elemento de la oferta
-                            for (int a=0;a< listaPersonajes.get(k).getEquipo().listaEsbirros.size();a++){
-                                for(int b=0;b<listaOfertas.get(i).getListaNombres().size();b++){
-                                    if(listaOfertas.get(i).getListaNombres().get(b).equals(listaPersonajes.get(k).getEquipo().listaEsbirros.get(a).getNombre())){
-                                        
-                                        personaje.getEquipo().listaEsbirros.add(listaPersonajes.get(k).getEquipo().listaEsbirros.get(a));
-                                        listaPersonajes.get(k).getEquipo().listaEsbirros.remove(a);
-                                        listaPersonajes.get(k).setOro(listaPersonajes.get(k).getOro()+listaOfertas.get(i).getPrecio());
-                                    }    
-                                }
-
-
-                            }
-                        }
                     }
+                }
+
+
+
+
+                personaje.setOro(personaje.getOro()-listaOfertas.get(i).getPrecio());
+
+
+                //tiene q quedar constancia de cada oferta en otro fichero
+                java.util.Date fecha = new Date();
+
+                File fichero = new File("FicherosMP/ficheroVentas.txt");
+                FileWriter fw = new FileWriter(fichero,true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write("Precio: " + listaOfertas.get(i).getPrecio());
+                bw.newLine();
+                bw.write("Comprador: " + getNick());
+                bw.newLine();
+                bw.write("Vendedor: " + listaOfertas.get(i).getTipoUsuario());
+                bw.newLine();
+                bw.write("Fecha: " + fecha.toString());
+                bw.newLine();
+
+                for (int x = 0; x < listaOfertas.get(i).getListaNombres().size(); x ++){
+                    bw.write("Oferta: "  + listaOfertas.get(i).getListaNombres().get(x));
 
                 }
-            }
+                bw.newLine();
+                bw.write("-------------------------------");
 
-            
-            personaje.setOro(personaje.getOro()-listaOfertas.get(i).getPrecio());
-            listaOfertas.remove(i);
-            //tiene q quedar constancia de cada oferta en otro fichero
+                bw.newLine();
+                bw.close();
+
+                listaOfertas.remove(i);
+                System.out.println("Oferta comprada");
+            }
         }
     }
+    
+  
     
     
     public void ofertarArma() throws IOException{
@@ -475,25 +513,34 @@ public ListaDePersonajes clasePersonajes;
     
     public void consultarOfertas() throws IOException, FileNotFoundException, ClassNotFoundException{
         deserializar(ficheroOfertas);
-        for(int i = 0; i<listaOfertas.size();i++){
-            if(listaOfertas.get(i).isValidada()){
-                System.out.print((i+1)+"-Oferta de "+listaOfertas.get(i).getTipoUsuario());
-                System.out.println(" Precio: "+listaOfertas.get(i).getPrecio());
-                for(int j = 0; j<listaOfertas.get(i).getListaNombres().size();j++){
-                    System.out.println("-------------");
-                    System.out.println("Tipo: "+listaOfertas.get(i).getListaElementos().get(j));
-                    System.out.println("Nombre: "+listaOfertas.get(i).getListaNombres().get(j));
-                    System.out.println("Categoría: "+listaOfertas.get(i).getCateg().get(j));
-                    System.out.println("Lealtad: "+listaOfertas.get(i).getLeal().get(j));
-                    System.out.println("Valor ataque: "+listaOfertas.get(i).getValorAtaque().get(j));
-                    System.out.println("Valor defensa: "+listaOfertas.get(i).getValorDefensa().get(j));
-                    
-                    
-                    
+        
+        if (listaOfertas.isEmpty()){
+            System.out.println("No hay ofertas publicadas");
+            System.out.println("-------------------------");
+        }
+        else{
+        
+            for(int i = 0; i<listaOfertas.size();i++){
+                if(listaOfertas.get(i).isValidada()){
+                    System.out.print((i+1)+"-Oferta de "+listaOfertas.get(i).getTipoUsuario());
+                    System.out.println(" Precio: "+listaOfertas.get(i).getPrecio());
+                    for(int j = 0; j<listaOfertas.get(i).getListaNombres().size();j++){
+                        System.out.println("-------------");
+                        System.out.println("Tipo: "+listaOfertas.get(i).getListaElementos().get(j));
+                        System.out.println("Nombre: "+listaOfertas.get(i).getListaNombres().get(j));
+                        System.out.println("Categoría: "+listaOfertas.get(i).getCateg().get(j));
+                        System.out.println("Lealtad: "+listaOfertas.get(i).getLeal().get(j));
+                        System.out.println("Valor ataque: "+listaOfertas.get(i).getValorAtaque().get(j));
+                        System.out.println("Valor defensa: "+listaOfertas.get(i).getValorDefensa().get(j));
+
+
+
+                    }
+
+                    System.out.println("----------------------------------");
                 }
-                
-                System.out.println("----------------------------------");
-            }
+
+            } 
         }
         
     }

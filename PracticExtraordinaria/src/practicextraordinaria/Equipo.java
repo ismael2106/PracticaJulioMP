@@ -188,7 +188,7 @@ class Equipo extends Operation implements java.io.Serializable{
         if ("2".equals(opcion)){
             System.out.println("Escribe el nombre de la armadura");
             String nombre = lectura.next();
-            System.out.println("Escribe la categoría de la armadura");
+            System.out.println("Escribe la categoría de la armadura(comun, raro, epico, legendario)");
             String categoria = lectura.next();
             System.out.println("Escribe el valor del modificador de ataque");
             String modAtaque = lectura.next();
@@ -233,10 +233,30 @@ class Equipo extends Operation implements java.io.Serializable{
         String tipo = lectura.next();
         
         if("humano".equals(tipo)){
+            boolean salir = false;
             System.out.println("Escribe la lealtad del humano (alta, media, baja)");
             String lealtad = lectura.next();
             Esbirro esbirro = new Esbirro(nombre, tipo, lealtad);
             listaEsbirros.add(esbirro);
+            
+            while (salir == false){
+                System.out.println("Quieres añadir esbirros a " + nombre + "? (1-si o 2-no)");
+                String a = lectura.next();
+                if ("1".equals(a)){
+                    System.out.println("Escribe el nombre del nuevo esbirro");
+                    String nombre2 = lectura.next();
+                    System.out.println("Escribe el tipo del esbirro");
+                    String tipo2 = lectura.next();
+                    Esbirro esb = new Esbirro(nombre2, tipo2, lealtad);
+                    esbirro.getHumano().getConjuntoEsbirros().add(esb);
+                }
+                else if("2".equals(a)){
+                    salir = true;
+                }
+                
+            }
+            
+            
         }
         else if("ghoul".equals(tipo)){
             System.out.println("Escribe la dependencia del ghoul (1-5)");

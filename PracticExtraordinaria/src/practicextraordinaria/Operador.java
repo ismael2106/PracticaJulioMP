@@ -54,7 +54,7 @@ public class Operador implements java.io.Serializable{
                 desbanear();
             }
             if ("4".equals(c)){
-                //consultarVentas();
+                consultarVentas();
             }
             if ("5".equals(c)){
                 salida = true;
@@ -64,21 +64,31 @@ public class Operador implements java.io.Serializable{
     
     
     public void validarOferta() throws IOException, FileNotFoundException, ClassNotFoundException{
-         Scanner lectura = new Scanner(System.in);
+        Scanner lectura = new Scanner(System.in);
         String ficheroOfertas = "FicherosMP/ficheroOfertas.bin";
         File f = new File(ficheroOfertas);
         deserializar(f);
-        for (int i = 0; i<listaOfertas.size();i++){
-            if (!listaOfertas.get(i).isValidada()){
-                System.out.println("Oferta "+i);
-            }
+        if (listaOfertas.isEmpty()){
+            System.out.println("No hay ofertas que validar");
+            System.out.println("--------------------------");
+            System.out.println("");
         }
-        System.out.print("Escriba el numero de la oferta que desea validar: ");
-        int sc = lectura.nextInt();
-        
-        listaOfertas.get(sc).setValidada(true);
-        ListaDeOfertas lista = new ListaDeOfertas(listaOfertas);
-        serializarOfertas(ficheroOfertas,lista);
+        else{
+            
+            for (int i = 0; i<listaOfertas.size();i++){
+                if (!listaOfertas.get(i).isValidada()){
+                    System.out.println("Oferta "+i);
+                }
+            }
+
+
+                System.out.print("Escriba el numero de la oferta que desea validar: ");
+                int sc = lectura.nextInt();
+
+                listaOfertas.get(sc).setValidada(true);
+                ListaDeOfertas lista = new ListaDeOfertas(listaOfertas);
+                serializarOfertas(ficheroOfertas,lista);
+            }
         
     }
     
@@ -131,6 +141,24 @@ public class Operador implements java.io.Serializable{
         
         
     }
+    
+    public void consultarVentas() throws FileNotFoundException{
+        File fichero = new File ("FicherosMP/ficheroVentas.txt");
+        Scanner sc = new Scanner(fichero);
+        if(fichero.length() == 0){
+            System.out.println("No se ha realizado ninguna venta");
+            System.out.println("--------------------------------");
+        }
+        else{
+            while (sc.hasNext()){
+                String linea = sc.nextLine();
+                System.out.println(linea);                
+            }
+        }
+
+    }
+    
+
     
     public void banear() throws FileNotFoundException, IOException{
          Scanner lectura = new Scanner(System.in);

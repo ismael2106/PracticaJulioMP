@@ -30,5 +30,9 @@ public class Humano implements java.io.Serializable {
     public lealtad getLoyalty() {
         return loyalty;
     }
+
+    public HashSet<Esbirro> getConjuntoEsbirros() {
+        return conjuntoEsbirros;
+    }
     
 }
