@@ -58,4 +58,3 @@ public class Armadura implements java.io.Serializable{
     }
     
   }
-

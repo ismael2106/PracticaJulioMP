@@ -98,3 +98,6 @@ sergio --> pepe
 peter --> pepe
 emma --> pepe
 isma --> lele
+emma --> lolo
+emma --> lica
+willy --> loli
